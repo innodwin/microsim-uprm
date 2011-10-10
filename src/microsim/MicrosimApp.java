@@ -40,5 +40,7 @@ public class MicrosimApp extends SingleFrameApplication {
      */
     public static void main(String[] args) {
         launch(MicrosimApp.class, args);
+        
+        System.out.println("hello world");
     }
 }
