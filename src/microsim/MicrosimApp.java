@@ -41,6 +41,8 @@ public class MicrosimApp extends SingleFrameApplication {
     public static void main(String[] args) {
         launch(MicrosimApp.class, args);
         
-        System.out.println("hello world");
+        Memory test = new Memory();
+        test.setContent("0", "55");
+        System.out.println(test.getContent("0"));
     }
 }

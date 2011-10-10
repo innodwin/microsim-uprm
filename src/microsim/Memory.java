@@ -12,7 +12,11 @@ import java.util.ArrayList;
  */
 public class Memory {
     
-    private ArrayList <String> memory = new ArrayList <String>(256);
+    private ArrayList <String> memory;
+    
+    public Memory(){
+        memory = new ArrayList <String>(256);
+    }
     
     public String getContent(String address)
     {
@@ -23,5 +27,6 @@ public class Memory {
     public void setContent(String address, String content)
     {
         memory.add(Integer.parseInt(address, 16), content);
+        
     }
 }
