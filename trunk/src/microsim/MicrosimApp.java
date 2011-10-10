@@ -45,5 +45,8 @@ public class MicrosimApp extends SingleFrameApplication {
         test.setContent("F", "55");
         System.out.println(test.getContent("3"));
         System.out.println(test.getContent("F"));
+        int num = Integer.parseInt("FF", 16);
+        String bin = Integer.toBinaryString(num);
+        System.out.println(bin);
     }
 }

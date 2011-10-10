@@ -4,14 +4,18 @@
  */
 package microsim;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author damian
  */
 public class Registers {
     
+    private ArrayList <String> registers;
+    
     public Registers()
     {
-        
+        registers = new ArrayList <String>();
     }
 }
