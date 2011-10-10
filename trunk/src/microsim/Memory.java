@@ -11,7 +11,8 @@ import java.util.ArrayList;
  * @author damian
  */
 public class Memory {
-    private ArrayList <String> memory;
+    
+    private ArrayList <String> memory = new ArrayList <String>(256);
     
     public String getContent(String address)
     {
