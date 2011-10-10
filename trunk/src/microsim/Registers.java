@@ -8,6 +8,10 @@ package microsim;
  *
  * @author damian
  */
-public class Register {
+public class Registers {
     
+    public Registers()
+    {
+        
+    }
 }
