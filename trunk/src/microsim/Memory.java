@@ -15,7 +15,10 @@ public class Memory {
     private ArrayList <String> memory;
     
     public Memory(){
-        memory = new ArrayList <String>(256);
+        memory = new ArrayList <String>();
+        for(int i = 0;i<256;i++){
+            memory.add("0");
+        }
     }
     
     public String getContent(String address)
