@@ -22,6 +22,7 @@ public class Registers {
     private int INVALIDREGISTER = -1200;
     private int INVALIDVALUE = -1201;
     private int INVALIDSIZE = -1202;
+    private int INVALIDFORMAT = -1203;
     private ArrayList <String> registers;
     private Tools t = new Tools();
     public Registers()
@@ -29,7 +30,6 @@ public class Registers {
         registers = new ArrayList <String>();
         for(int i = 0;i<10;i++)
             registers.add("00000000");
-        
         registers.add("0000000000000000");
         registers.add("0000");
 
@@ -42,7 +42,15 @@ public class Registers {
      * @param value
      * @return An error code in the negative range numbers. If successful returns 1.
      */
-    public int write(int addr,String value ){
+    public int write(String address,String value ){
+        int addr = 0;
+        int val = 0;
+        try{
+            addr = Integer.parseInt(address, 2);
+           }catch(Exception e)
+           { 
+               return INVALIDFORMAT;
+           }
         
         if(addr > 7)
             return INVALIDREGISTER;
@@ -51,6 +59,7 @@ public class Registers {
         if(value.length() > 8) 
             return INVALIDSIZE;
         
+        System.out.println(t.extendBinaryValue(8, value));
         registers.add(addr, value);
         
         return 1;
@@ -66,7 +75,7 @@ public class Registers {
         
         if(addr > 7)
             return null;
-        
+        return "DD";
         
     }
 }
