@@ -5,6 +5,7 @@
 package microsim;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -12,25 +13,28 @@ import java.util.ArrayList;
  */
 public class Memory {
     
-    private ArrayList <String> memory;
+    private ArrayList <String> memory;  //ArrayList that will hold the 256 bytes of memory
     
     public Memory()
     {
-        memory = new ArrayList <String>();
-        for(int i = 0;i<256;i++)
-            memory.add("00000000");
-        
+        Random random = new Random();
+        memory = new ArrayList <String>(); //Creates the memory ArrayList
+        for(int i = 0;i<256;i++) //FOR loop to fill the memory with trash
+        {
+            int trash = random.nextInt(256); //Generates the trash
+            memory.add(Integer.toBinaryString(trash)); //converts the trash to binary String and inserts it into memory
+        }
     }
     
     public String getContent(String address)
     {
-        int dir = Integer.parseInt(address, 16);
+        int dir = Integer.parseInt(address, 2);
         return memory.get(dir);
     }
     
     public void setContent(String address, String content)
     {
-        memory.add(Integer.parseInt(address, 16), content);
+        memory.add(Integer.parseInt(address, 2), content);
         
     }
 }
