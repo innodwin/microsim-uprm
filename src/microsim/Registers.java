@@ -18,6 +18,8 @@ public class Registers {
     public Registers()
     {
         registers = new ArrayList <String>();
+        for(int i = 0;i<8;i++)
+            registers.add("00000000");
     }
     
     public int write(int addr,String value ){
@@ -26,6 +28,8 @@ public class Registers {
             return INVALIDREGISTER;
         if(!t.isBinary(value))
             return this.INVALIDVALUE;
+        if(value.length() > 8) 
+        return 1;
         
         return 1;
         

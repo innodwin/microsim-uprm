@@ -18,7 +18,7 @@ public class Memory {
     {
         memory = new ArrayList <String>();
         for(int i = 0;i<256;i++)
-            memory.add("0");
+            memory.add("00000000");
         
     }
     
