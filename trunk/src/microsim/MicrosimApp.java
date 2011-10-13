@@ -41,11 +41,13 @@ public class MicrosimApp extends SingleFrameApplication {
     public static void main(String[] args) {
         //launch(MicrosimApp.class, args);
         Registers r = new Registers();
-        int result = r.write(0, "11111111");
+        int result = r.write("0111", "01010");
+        r.setSR(0, "1");
+        r.write("0001", "111");
         Memory test = new Memory();
         test.setContent("1111", "3");
-        System.out.println(test.getContent("3"));
-        System.out.println(test.getContent("F"));
+        //System.out.println(test.getContent("3"));
+        //System.out.println(test.getContent("F"));
         int num = Integer.parseInt("FF", 16);
         String bin = Integer.toBinaryString(num);
         //System.out.println(bin);
