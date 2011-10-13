@@ -23,6 +23,7 @@ public class Memory {
         {
             int trash = random.nextInt(256); //Generates the trash
             memory.add(Integer.toBinaryString(trash)); //converts the trash to binary String and inserts it into memory
+            System.out.println(memory.get(i));
         }
     }
     

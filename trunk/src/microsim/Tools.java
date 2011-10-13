@@ -25,6 +25,19 @@ public class Tools {
          }
          return check;
 }
+  
+  public String extendBinaryValue(int size,String value){
+      int wordSize = value.length();
+      String strToReturn;
+      char sign = 
+      while(wordSize != size)
+      {
+          strToReturn += 
+      }
+      
+      
+  }
+
 
     
 }
