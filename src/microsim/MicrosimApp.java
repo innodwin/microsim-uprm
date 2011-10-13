@@ -11,6 +11,20 @@ import org.jdesktop.application.SingleFrameApplication;
  * The main class of the application.
  */
 public class MicrosimApp extends SingleFrameApplication {
+    public static final int ZERO = 0;
+    public static final int CARRY = 1;
+    public static final int NEGATIVE = 2;
+    public static final int OVERFLOW = 3;
+    public static final String R1 = "000";
+    public static final String R2 = "001";
+    public static final String R3 = "010";
+    public static final String R4 = "011";
+    public static final String R5 = "100";
+    public static final String R6 = "101";
+    public static final String R7 = "110";
+    public static final String R8 = "111";
+
+
 
     /**
      * At startup create and show the main frame of the application.
@@ -41,9 +55,9 @@ public class MicrosimApp extends SingleFrameApplication {
     public static void main(String[] args) {
         //launch(MicrosimApp.class, args);
         Registers r = new Registers();
-        int result = r.write("0111", "01010");
-        r.setSR(0, "1");
-        r.write("0001", "111");
+        //int result = r.write("0111", "01010");
+        r.setSR(CARRY, "1");
+        r.write(R8, "111");
         Memory test = new Memory();
         test.setContent("1111", "3");
         //System.out.println(test.getContent("3"));

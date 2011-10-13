@@ -36,7 +36,7 @@ public class Registers {
     public Registers()
     {
         registers = new ArrayList <String>();
-        for(int i = 0;i<9;i++)
+        for(int i = 0;i<10;i++)
             registers.add("00000000");
         registers.add("0000000000000000");
         registers.add("0000");
@@ -70,7 +70,7 @@ public class Registers {
         
         
         //If the value is not in an 8-bit format, this formats it.
-        registers.add(addr, t.extendBinaryValue(8, value));
+        registers.set(addr, t.extendBinaryValue(8, value));
         
         for(int i = 0; i < registers.size();i++)
             System.out.println(registers.get(i));
@@ -114,7 +114,7 @@ public class Registers {
         if(value.length()>8)
             return INVALIDSIZE;
         
-        registers.add(PCINDEX, value);
+        registers.set(PCINDEX, value);
         return 1;
     }
 
@@ -136,7 +136,7 @@ public class Registers {
         if(value.length()>8)
             return INVALIDSIZE;
         
-        registers.add(ACCUMULATORINDEX, value);
+        registers.set(ACCUMULATORINDEX, value);
         return 1;
     }
 
@@ -158,7 +158,7 @@ public class Registers {
         if(value.length()>16)
             return INVALIDSIZE;
         
-        registers.add(IRINDEX, value);
+        registers.set(IRINDEX, value);
         return 1;
     }
 
@@ -186,7 +186,7 @@ public class Registers {
         for(int i = 0; i < tmp.length();i++)
             tmpArr.add(Character.toString(tmp.charAt(i)));
         
-        tmpArr.add(flagType, value);
+        tmpArr.set(flagType, value);
         tmp = "";
         
         for(int j = 0;j < tmpArr.size();j++)
