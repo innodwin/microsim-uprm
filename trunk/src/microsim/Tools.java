@@ -28,12 +28,18 @@ public class Tools {
   
   public String extendBinaryValue(int size,String value){
       int wordSize = value.length();
-      String strToReturn;
-      char sign = 
+      String strToReturn = "";
+      char sign = value.charAt(0);
+      
       while(wordSize != size)
       {
-          strToReturn += 
+          strToReturn += sign;
+          wordSize++;
       }
+      
+      strToReturn += value;
+      
+      return strToReturn;
       
       
   }
