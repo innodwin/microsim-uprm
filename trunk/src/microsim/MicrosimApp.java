@@ -42,11 +42,11 @@ public class MicrosimApp extends SingleFrameApplication {
         launch(MicrosimApp.class, args);
         
         Memory test = new Memory();
-        test.setContent("F", "55");
-        System.out.println(test.getContent("3"));
-        System.out.println(test.getContent("F"));
+        test.setContent("1111", "3");
+        //System.out.println(test.getContent("3"));
+        //System.out.println(test.getContent("F"));
         int num = Integer.parseInt("FF", 16);
         String bin = Integer.toBinaryString(num);
-        System.out.println(bin);
+        //System.out.println(bin);
     }
 }
