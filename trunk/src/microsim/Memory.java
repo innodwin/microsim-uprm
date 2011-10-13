@@ -23,7 +23,7 @@ public class Memory {
         {
             int trash = random.nextInt(256); //Generates the trash
             memory.add(Integer.toBinaryString(trash)); //converts the trash to binary String and inserts it into memory
-            System.out.println(memory.get(i));
+            //System.out.println(memory.get(i));
         }
     }
     
@@ -35,7 +35,6 @@ public class Memory {
     
     public void setContent(String address, String content)
     {
-        memory.add(Integer.parseInt(address, 2), content);
-        
+        memory.add(Integer.parseInt(address, 2), content);        
     }
 }
