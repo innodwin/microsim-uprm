@@ -10,4 +10,8 @@ package microsim;
  */
 public class Display {
     
+    public Display(){
+        
+    }
+    
 }
