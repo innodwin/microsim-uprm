@@ -10,4 +10,13 @@ package microsim;
  */
 public class ALU {
     
+    public static void and()
+    {
+        
+    }
+    
+    public static void or()
+    {
+        
+    }
 }
