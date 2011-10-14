@@ -21,8 +21,8 @@ public class InstructionParser {
     
     /**
      * Converts hexadecimal instruction String into a binary String
-     * @param instruction
-     * @return
+     * @param instruction The instruction to convert
+     * @return The instruction in a binary String
      */
     public static String parse(String instruction){
         //TODO: Check if instruction length = 4
@@ -31,16 +31,31 @@ public class InstructionParser {
         return binary;
     }
     
+    /**
+     * Extracts the OpCode from a String that is already in binary format
+     * @param binaryInstruction
+     * @return The 5 opcode bits in a binary String
+     */
     public static String opcode(String binaryInstruction){        
         String opcode = binaryInstruction.substring(0, 4);
         return opcode;
     }
     
+    /**
+     * 
+     * @param binaryInstruction
+     * @return
+     */
     public static String register(String binaryInstruction){
         String register = binaryInstruction.substring(5, 7);
         return register;
     }
     
+    /**
+     * 
+     * @param binaryInstruction
+     * @return
+     */
     public static String operand(String binaryInstruction){
         String register = binaryInstruction.substring(8, 15);
         return register;
