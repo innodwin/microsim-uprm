@@ -56,14 +56,15 @@ public class MicrosimApp extends SingleFrameApplication {
         //launch(MicrosimApp.class, args);
         Registers r = new Registers();
         IO io = new IO();
-        
-        for(int i = 0;i< 10;){
+        ALU alu = new ALU();
+        /*for(int i = 0;i< 10;){
             io.readChar();
             System.out.println(io.getInputBin());
-        }
+        }*/
+        System.out.println(alu.multiply("1111", "0111")+ "!!!!!");
         //int result = r.write("0111", "01010");
-        r.setSR(CARRY, "1");
-        r.write(R8, "111");
+        //r.setSR(CARRY, "1");
+        //r.write(R8, "111");
         Memory test = new Memory();
         test.setContent("1111", "3");
         //System.out.println(test.getContent("3"));
