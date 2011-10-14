@@ -9,7 +9,7 @@ package microsim;
  * @author luillo
  */
 public class Tools {
-    
+    private final int ERROR = -1300;
   public boolean isBinary(String input) {
  
          boolean check = true;
@@ -29,7 +29,7 @@ public class Tools {
   public String extendBinaryValue(int size,String value){
       int wordSize = value.length();
       String strToReturn = "";
-      char sign = value.charAt(0);
+      String sign ="0";//value.charAt(0);
       
       while(wordSize != size)
       {
@@ -39,9 +39,19 @@ public class Tools {
       
       strToReturn += value;
       
-      return strToReturn;
+      return strToReturn;  
+  }
+  
+  public int binToDec(String value)
+  {
+      int valToReturn;
+      try{
+           valToReturn = Integer.parseInt(value,2);
+      }catch(Exception e){
+          return ERROR;
+      }
       
-      
+      return valToReturn;
   }
 
 
