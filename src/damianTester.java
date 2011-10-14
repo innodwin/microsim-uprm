@@ -13,12 +13,14 @@ import microsim.Instruction;
  */
 public class damianTester {
      public static void main(String[] args) {
-      Instruction test = new Instruction ("FFAA");   
+      Instruction test = new Instruction ("F4A6");   
       Instruction test2 = new Instruction ("0000");
       
-      System.out.println(test.getHexInstruction());
-      System.out.println(test.getIntInstruction());
-      System.out.println(test.getBinInstruction());
-      System.out.println(test2.getBinInstruction());
+      System.out.println("Hex inst " + test.getHexInstruction());
+      System.out.println("Int inst " +test.getIntInstruction());
+      System.out.println("Bin inst " +test.getBinInstruction());
+      System.out.println("Opcode: " +test.getOpcode());
+      System.out.println("Register "+test.getRegister());
+      System.out.println("Operand "+test.getOperand());
      }
 }
