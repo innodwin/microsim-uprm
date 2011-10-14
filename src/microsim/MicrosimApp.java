@@ -55,6 +55,12 @@ public class MicrosimApp extends SingleFrameApplication {
     public static void main(String[] args) {
         //launch(MicrosimApp.class, args);
         Registers r = new Registers();
+        IO io = new IO();
+        
+        for(int i = 0;i< 10;){
+            io.readChar();
+            System.out.println(io.getInputBin());
+        }
         //int result = r.write("0111", "01010");
         r.setSR(CARRY, "1");
         r.write(R8, "111");
