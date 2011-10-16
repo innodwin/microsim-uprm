@@ -6,7 +6,7 @@ package microsim;
 
 /**
  *
- * @author damian
+ * @author Damian Esteves
  */
 public class InstructionParser {
 
