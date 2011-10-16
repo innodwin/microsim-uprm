@@ -17,15 +17,15 @@ public class Instruction {
     /**
      * Property holding the original instruction in a Hexadecimal String
      */
-    protected String hexInstruction;
+    private String hexInstruction;
     /**
      * Property holding the instruction in a native integer (decimal)
      */
-    protected int intInstruction;
+    private int intInstruction;
     /**
      * Property holding the instruction in a Binary String
      */
-    protected String binInstruction; 
+    private String binInstruction; 
     
     /**
      * Creates the Instruction object for use.
