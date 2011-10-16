@@ -35,6 +35,7 @@ public class ControlUnit {
     public static final String R6 = "101";
     public static final String R7 = "110";
     public static final String R8 = "111";
+    private int stopFlag = 0;
 
 
     public ControlUnit(File instructions) throws FileNotFoundException, IOException {        
@@ -59,7 +60,6 @@ public class ControlUnit {
          instructionsToMemory();
          memory.showMemory();
          registers.setPC("00000000");
-         registers.setIR(memory.getWord(registers.getPC()));
         
     }
     public void instructionsToMemory(){
@@ -234,19 +234,26 @@ public class ControlUnit {
          * the beginning of every nextStep(), if the flag is set, then next step
          * does not run and the simulator is set back into initialization mode.
          */
+        stopFlag = 1;
+        
     }
-    
+    //TODO: I'm not sure if this stopFlag shit makes sense, but fuck it
     public void nextStep(){
-        registers.setIR(memory.getWord(registers.getPC()));
-        registers.incrementPC();
-        executeInstruction(registers.getIR());
+        if(stopFlag ==  0){
+            registers.setIR(memory.getWord(registers.getPC()));
+            registers.incrementPC();
+            executeInstruction(registers.getIR());
+        }
+        else
+            //Pop up window "STOP instruction received, reinitializing simulator"
+            //Reinitialization
     }
     
     public void run(){
-        /*TODO: figure out the condition to put inside the while
+        //TODO: figure out the condition to put inside the while
         do
             nextStep();
-        while(there are still instructions to run)
-        */
+        while(stopFlag==0);
+        
     }
 }
