@@ -62,4 +62,9 @@ public class Memory {
         memory.set(intAddress+1,byte2);
         
     }
+    
+    public void showMemory(){
+        for(int i = 0; i < memory.size();i++)
+        System.out.println(this.memory.get(i));
+    }
 }
