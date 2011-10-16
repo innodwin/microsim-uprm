@@ -23,21 +23,63 @@ public class ControlUnit {
     private Registers registers = new Registers();
     private ArrayList<String> hexInstructions = new ArrayList<String>(64);    
     File instructionFile;
+    /**
+     * 
+     */
     public static final int ZERO = 0;
+    /**
+     * 
+     */
     public static final int CARRY = 1;
+    /**
+     * 
+     */
     public static final int NEGATIVE = 2;
+    /**
+     * 
+     */
     public static final int OVERFLOW = 3;
+    /**
+     * 
+     */
     public static final String R1 = "000";
+    /**
+     * 
+     */
     public static final String R2 = "001";
+    /**
+     * 
+     */
     public static final String R3 = "010";
+    /**
+     * 
+     */
     public static final String R4 = "011";
+    /**
+     * 
+     */
     public static final String R5 = "100";
+    /**
+     * 
+     */
     public static final String R6 = "101";
+    /**
+     * 
+     */
     public static final String R7 = "110";
+    /**
+     * 
+     */
     public static final String R8 = "111";
     private int stopFlag = 0;
 
 
+    /**
+     * 
+     * @param instructions
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public ControlUnit(File instructions) throws FileNotFoundException, IOException {        
         /*
          * Pseudocode tentativo:
@@ -62,6 +104,9 @@ public class ControlUnit {
          registers.setPC("00000000");
         
     }
+    /**
+     * 
+     */
     public void instructionsToMemory(){
         int size = hexInstructions.size();
         int count = 0;
@@ -74,6 +119,10 @@ public class ControlUnit {
         }
     }
     
+    /**
+     * 
+     * @param InstructionRegister
+     */
     public void executeInstruction(String InstructionRegister){
         String opcode = InstructionParser.opcode(InstructionRegister);
         String register = InstructionParser.register(InstructionRegister);
@@ -179,54 +228,92 @@ public class ControlUnit {
         
     }
  
+    /**
+     * 
+     * @param register
+     */
     public void ldaRegister(String register){
         String registerValue = registers.read(register);
         registers.setAccumulator(registerValue);
     }
     
+    /**
+     * 
+     * @param register
+     */
     public void staRegister(String register){
         String accumulatorValue = registers.getAccumulator();
         registers.write(register, accumulatorValue);
     }
     
+    /**
+     * 
+     * @param address
+     */
     public void ldaAddress(String address){
         String addressContent = memory.getByte(address);
         registers.setAccumulator(addressContent);
     }
     
+    /**
+     * 
+     * @param address
+     */
     public void staAddress(String address){
         String accumulatorValue = registers.getAccumulator();
         memory.setByte(address, accumulatorValue);
     }
     
+    /**
+     * 
+     * @param immediate
+     */
     public void ldi(String immediate){
         registers.setAccumulator(immediate);
     }
     
+    /**
+     * 
+     */
     public void brz(){
         if(registers.getSR(ZERO).equals(1))
             registers.setPC(registers.read(R7));
     }
     
+    /**
+     * 
+     */
     public void brc(){
         if(registers.getSR(CARRY).equals(1))
             registers.setPC(registers.read(R7));
     }
     
+    /**
+     * 
+     */
     public void brn(){
         if(registers.getSR(NEGATIVE).equals(1))
             registers.setPC(registers.read(R7));
     }
     
+    /**
+     * 
+     */
     public void bro(){
         if(registers.getSR(OVERFLOW).equals(1))
             registers.setPC(registers.read(R7));
     }
     
+    /**
+     * 
+     */
     public void nop(){
         System.out.println("Yup. Nothing happened.");
     }
     
+    /**
+     * 
+     */
     public void stop(){
         //TODO: Figure out how to stop execution.
         /*
@@ -238,17 +325,24 @@ public class ControlUnit {
         
     }
     //TODO: I'm not sure if this stopFlag shit makes sense, but fuck it
+    /**
+     * 
+     */
     public void nextStep(){
         if(stopFlag ==  0){
             registers.setIR(memory.getWord(registers.getPC()));
             registers.incrementPC();
             executeInstruction(registers.getIR());
         }
-        else
+        //else
             //Pop up window "STOP instruction received, reinitializing simulator"
             //Reinitialization
+            
     }
     
+    /**
+     * 
+     */
     public void run(){
         //TODO: figure out the condition to put inside the while
         do
