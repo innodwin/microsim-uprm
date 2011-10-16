@@ -27,6 +27,10 @@ public class InstructionParser {
         //TODO: Check if instruction length = 4
         int decimal = Integer.parseInt(instruction, 16); //Converts instruction to int
         String binary = Integer.toBinaryString(decimal); //Converts int instruction to binary String
+        int length = binary.length(); //grabs the length of the binary instruction
+            if(length != 16) //checks  if the instruction is 16 bits long
+                for(int i = length; i < 16; i++) //for every missing bit
+                    binary = "0" + binary; //add a leading zero to the String
         return binary;
     }
     
@@ -36,7 +40,7 @@ public class InstructionParser {
      * @return The 5 opcode bits in a binary String
      */
     public static String opcode(String binaryInstruction){        
-        String opcode = binaryInstruction.substring(0, 4);
+        String opcode = binaryInstruction.substring(0, 5);
         return opcode;
     }
     
@@ -46,7 +50,7 @@ public class InstructionParser {
      * @return
      */
     public static String register(String binaryInstruction){
-        String register = binaryInstruction.substring(5, 7);
+        String register = binaryInstruction.substring(5, 8);
         return register;
     }
     
@@ -56,7 +60,7 @@ public class InstructionParser {
      * @return
      */
     public static String operand(String binaryInstruction){
-        String operand = binaryInstruction.substring(8, 15);
+        String operand = binaryInstruction.substring(8, 16);
         return operand;
     }
 }

@@ -87,13 +87,13 @@ public class ControlUnit {
                 staRegister(register);
                 break;
             case 12: //LDA addr
-                //ldaddr();
+                ldaAddress(operand);
                 break;
             case 13: //STA addr
-                //staddr();
+                staAddress(operand);
                 break;
             case 14: //LDI Immediate
-                //ldi();
+                ldi(operand);
                 break;
             case 16: //BRZ
                 //brz();
@@ -128,11 +128,38 @@ public class ControlUnit {
         registers.write(register, accumulatorValue);
     }
     
-    public void ldaAddress(String operand){
-        
+    public void ldaAddress(String address){
+        String addressContent = registers.read(address);
+        registers.setAccumulator(addressContent);
     }
     
-    public void staAddress(String operand){
-        
+    public void staAddress(String address){
+        String accumulatorValue = registers.getAccumulator();
+        registers.write(address, accumulatorValue);
     }
+    
+    public void ldi(String immediate){
+        registers.setAccumulator(immediate);
+    }
+    
+    public void brz(){
+        //if(registers.getSR(index) == 1)
+            registers.setPC(registers.read("111"));
+    }
+    
+    public void brc(){
+        //if(registers.getSR(index) == 1)
+            registers.setPC(registers.read("111"));
+    }
+    
+    public void brn(){
+        //if(registers.getSR(index) == 1)
+            registers.setPC(registers.read("111"));
+    }
+    
+    public void bro(){
+        //if(registers.getSR(index) == 1)
+            registers.setPC(registers.read("111"));
+    }
+    
 }
