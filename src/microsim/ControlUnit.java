@@ -179,23 +179,23 @@ public class ControlUnit {
     }
     
     public void brz(){
-        //if(registers.getSR(index) == 1)
-            registers.setPC(registers.read("111"));
+        if(registers.getSR(ZERO).equals(1))
+            registers.setPC(registers.read(R7));
     }
     
     public void brc(){
-        //if(registers.getSR(index) == 1)
-            registers.setPC(registers.read("111"));
+        if(registers.getSR(CARRY).equals(1))
+            registers.setPC(registers.read(R7));
     }
     
     public void brn(){
-        //if(registers.getSR(index) == 1)
-            registers.setPC(registers.read("111"));
+        if(registers.getSR(NEGATIVE).equals(1))
+            registers.setPC(registers.read(R7));
     }
     
     public void bro(){
-        //if(registers.getSR(index) == 1)
-            registers.setPC(registers.read("111"));
+        if(registers.getSR(OVERFLOW).equals(1))
+            registers.setPC(registers.read(R7));
     }
     
 }
