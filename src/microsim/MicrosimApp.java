@@ -14,19 +14,7 @@ import org.jdesktop.application.SingleFrameApplication;
  * The main class of the application.
  */
 public class MicrosimApp extends SingleFrameApplication {
-    public static final int ZERO = 0;
-    public static final int CARRY = 1;
-    public static final int NEGATIVE = 2;
-    public static final int OVERFLOW = 3;
-    public static final String R1 = "000";
-    public static final String R2 = "001";
-    public static final String R3 = "010";
-    public static final String R4 = "011";
-    public static final String R5 = "100";
-    public static final String R6 = "101";
-    public static final String R7 = "110";
-    public static final String R8 = "111";
-
+    
 
 
     /**
