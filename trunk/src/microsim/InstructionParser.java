@@ -14,8 +14,7 @@ public class InstructionParser {
     /**
      * Empty constructor. Class is only used for its methods
      */
-    public InstructionParser() {
-        
+    public InstructionParser() {   
     }
     
     
