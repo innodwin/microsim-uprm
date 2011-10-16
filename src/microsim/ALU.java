@@ -10,12 +10,117 @@ package microsim;
  */
 public class ALU {
     
-    public static void and()
+    public static String and(String accumulator, String register)
+    {
+        int i = 0;
+	String and = "";
+	
+        while (i < 8){
+            if(accumulator.charAt(i) == '0' || register.charAt(i) == '0')
+                and.concat("0");
+            else
+                and.concat("1");
+			
+            i++;
+	}
+	
+        return and;
+    }
+    
+    public static String or(String accumulator, String register)
+    {
+        int i = 0;
+        String or = "";
+        
+        while (i < 8){
+            if(accumulator.charAt(i) == '1' || register.charAt(i) == '1')
+                or.concat("1");
+            else
+                or.concat("0");
+            
+            i++;
+	}
+	
+        return or;
+    }
+    
+    public static String addc(String accumulator, String register)
+    {
+        int acc = Long.valueOf(accumulator, 2).intValue();
+	int reg = Long.valueOf(register, 2).intValue();
+		
+        acc += reg;
+	acc %= 255;
+		
+	return Integer.toBinaryString(acc);
+    }
+    
+    public static String sub(String accumulator, String register)
+    {
+        int acc = Long.valueOf(accumulator, 2).intValue();
+	int reg = Long.valueOf(register, 2).intValue();
+		
+        acc -= reg;
+	acc %= 255;
+		
+	return Integer.toBinaryString(acc);
+    }
+    
+    public static String xor(String accumulator, String register)
+    {
+        int i = 0;
+        String xor = "";
+	
+        while (i < 8){
+            if(accumulator.charAt(i) == '1' && register.charAt(i) == '1')
+                xor.concat("0");
+            else if(accumulator.charAt(i) == '0' && register.charAt(i) == '0')
+		xor.concat("0");
+            else
+		xor.concat("1");
+			
+            i++;
+	}
+	
+        return xor;
+    }
+    
+    public static String not(String accumulator)
+    {
+        int i = 0;
+	String not = "";
+		
+	while(i > 8){
+            if(accumulator.charAt(i) == '0')
+                not.concat("1");
+            else
+                not.concat("0");
+            i++;
+	}
+		
+	return not;
+    }
+    
+    public static String neg(String accumulator)
+    {
+        String neg = "";
+		
+	if(accumulator.charAt(0) == '1')
+            neg.concat("0");
+        else
+            neg.concat("1");
+		
+	neg.concat(accumulator.substring(1, accumulator.length()));
+		
+	return neg;
+    }
+    
+    public static String rlc(String accumulator)
     {
         
     }
     
-    public static void or()
+    public static String rrc(String accumulator)
     {
         
     }
