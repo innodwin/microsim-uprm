@@ -58,6 +58,8 @@ public class ControlUnit {
          
          instructionsToMemory();
          memory.showMemory();
+         registers.setPC("00000000");
+         registers.setIR(memory.getWord(registers.getPC()));
         
     }
     public void instructionsToMemory(){
