@@ -33,7 +33,7 @@ public class InstructionParser {
     
     /**
      * Extracts the 5 Opcode bits from a binary instruction String
-     * @param binaryInstruction
+     * @param binaryInstruction The full 16-bit instruction in a binary String
      * @return The 5 Opcode bits in a binary String
      */
     public static String opcode(String binaryInstruction){        
@@ -43,7 +43,7 @@ public class InstructionParser {
     
     /**
      * Extracts the 3 Register bits from a binary instruction String.
-     * @param binaryInstruction
+     * @param binaryInstruction The full 16-bit instruction in a binary String
      * @return the 3 Register bits in a binary String
      */
     public static String register(String binaryInstruction){
@@ -53,7 +53,7 @@ public class InstructionParser {
     
     /**
      * Extracts the 8 Operand bits from from a binary instruction String
-     * @param binaryInstruction
+     * @param binaryInstruction The full 16-bit instruction in a binary String
      * @return The 8 Operand bits in a binary String
      */
     public static String operand(String binaryInstruction){
