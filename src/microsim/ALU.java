@@ -10,6 +10,9 @@ package microsim;
  */
 public class ALU {
     
+    private static Registers registers = new Registers();
+    private static final int CARRY = 1;
+    
     public static String and(String accumulator, String register)
     {
         int i = 0;
@@ -117,12 +120,22 @@ public class ALU {
     
     public static String rlc(String accumulator)
     {
+        String oldCarry = registers.getSR(CARRY);
+        String newCarry = ""+accumulator.charAt(0);
+        registers.setSR(CARRY, newCarry);
+        accumulator = accumulator.substring(1, 8)+oldCarry;
         
+        return accumulator;
     }
     
     public static String rrc(String accumulator)
     {
+        String oldCarry = registers.getSR(CARRY);
+        String newCarry = ""+accumulator.charAt(7);
+        registers.setSR(CARRY, newCarry);
+        accumulator = oldCarry+accumulator.substring(0, 7);
         
+        return accumulator;
     }
     
     public static String multiply(String accumulator, String register)
