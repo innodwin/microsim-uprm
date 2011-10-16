@@ -204,4 +204,15 @@ public class Registers {
             return "";
         return String.valueOf(registers.get(SRINDEX).charAt(index));
     }
+//**************************************************************************************
+//Sets the value of the Program Counter
+//**************************************************************************************       
+    public void incrementPC(){
+        int tmp  = Integer.parseInt(this.registers.get(PCINDEX),2);
+        tmp += 2;
+        String tmp1 = Integer.toBinaryString(tmp);
+        
+        this.registers.set(PCINDEX, t.extendBinaryValue(8, tmp1));
+    }
+    
 }
