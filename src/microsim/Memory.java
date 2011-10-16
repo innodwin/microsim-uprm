@@ -24,8 +24,8 @@ public class Memory {
             int basura = random.nextInt(256); //Generates the trash
             String trash = Integer.toBinaryString(basura); //Converts trash to binary
             int length = trash.length(); //saves the trash String length
-            if(length != 16)
-                for(int j = length; j < 16; j++)
+            if(length != 8)
+                for(int j = length; j < 8; j++)
                     trash = "0" + trash; //fills leading zeros to get the Binary String to 16-bits
             memory.add(trash); //converts the trash to binary String and inserts it into memory
             //System.out.println(memory.get(i));
