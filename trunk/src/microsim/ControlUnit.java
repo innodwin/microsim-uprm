@@ -198,4 +198,11 @@ public class ControlUnit {
             registers.setPC(registers.read(R7));
     }
     
+    public void nop(){
+        System.out.println("Yup. Nothing happened.");
+    }
+    
+    public void stop(){
+        //TODO: WTF
+    }
 }
