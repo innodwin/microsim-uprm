@@ -205,7 +205,12 @@ public class ControlUnit {
     }
     
     public void stop(){
-        //TODO: WTF
+        //TODO: Figure out how to stop execution.
+        /*
+         * Possibly have the the stop() set a custom flag that is checked at
+         * the beginning of every nextStep(), if the flag is set, then next step
+         * does not run and the simulator is set back into initialization mode.
+         */
     }
     
     public void nextStep(){
@@ -215,6 +220,10 @@ public class ControlUnit {
     }
     
     public void run(){
-        
+        /*TODO: figure out the condition to put inside the while
+        do
+            nextStep();
+        while(there are still instructions to run)
+        */
     }
 }
