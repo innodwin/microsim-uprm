@@ -4,6 +4,9 @@
 
 package microsim;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -52,15 +55,9 @@ public class MicrosimApp extends SingleFrameApplication {
     /**
      * Main method launching the application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         //launch(MicrosimApp.class, args);
-        Registers r = new Registers();
-        IO io = new IO();
-        ALU alu = new ALU();
-        Memory test = new Memory();
-        test.setContent("1111", "3");
-        //System.out.println(test.getContent("3"));
-        //System.out.println(test.getContent("F"));
+        ControlUnit cu = new ControlUnit(new File("test.txt"));
         int num = Integer.parseInt("FF", 16);
         String bin = Integer.toBinaryString(num);
         //System.out.println(bin);

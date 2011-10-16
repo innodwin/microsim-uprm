@@ -4,7 +4,13 @@
  */
 package microsim;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -15,9 +21,10 @@ public class ControlUnit {
 
     private Memory memory = new Memory();
     private Registers registers = new Registers();
-    private ArrayList<String> hexInstructions = new ArrayList<String>(128);    
+    private ArrayList<String> hexInstructions = new ArrayList<String>(64);    
+    File instructionFile;
 
-    public ControlUnit(File instructions) {        
+    public ControlUnit(File instructions) throws FileNotFoundException, IOException {        
         /*
          * Pseudocode tentativo:
          * 
@@ -26,13 +33,27 @@ public class ControlUnit {
          * check length of instructions is 4 characters before inserting. If <4 throw error.
          * 
          */
+        FileInputStream fstream = new FileInputStream(instructions);
+        DataInputStream in = new DataInputStream(fstream);
+        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        String strLine;
+        while ((strLine = br.readLine()) != null)   {
+            System.out.println (strLine);
+            hexInstructions.add(strLine);
+        }
+         in.close();
+         
+         instructionsToMemory();
+        
+        
     }
     public void instructionsToMemory(){
         int size = hexInstructions.size();
+        int count = 0;
         for(int i=0;i<size;i++){
            String binInst = InstructionParser.parse(hexInstructions.get(i));
-           String address = Integer.toBinaryString(i);
-           memory.setByte(address, binInst);
+           String address = Integer.toBinaryString(i*2);
+           memory.setWord(address, binInst);
         }
     }
     
