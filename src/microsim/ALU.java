@@ -49,8 +49,13 @@ public class ALU {
     
     public static String addc(String accumulator, String register)
     {
+        String carry = registers.getSR(CARRY);
+        
         int acc = Long.valueOf(accumulator, 2).intValue();
 	int reg = Long.valueOf(register, 2).intValue();
+        
+        if(carry.equals(1))
+            reg++;
 		
         acc += reg;
 	acc %= 255;
@@ -138,7 +143,7 @@ public class ALU {
         return accumulator;
     }
     
-    public static String multiply(String accumulator, String register)
+    public static String mul(String accumulator, String register)
     {
        String op1 = accumulator.substring(4, 8);
        String op2 = register.substring(4,8);

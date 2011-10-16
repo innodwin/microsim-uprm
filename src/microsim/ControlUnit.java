@@ -85,38 +85,61 @@ public class ControlUnit {
         int intopcode = Integer.parseInt(opcode, 2);
         switch(intopcode){
             case 0: //AND
-                //ALU.and();
+                registerValue = registers.read(register);
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.and(accumulatorValue, registerValue);
+                registers.setAccumulator(result);
                 break;
             case 1: //OR
-                //ALU.or();
+                registerValue = registers.read(register);
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.or(accumulatorValue, registerValue);
+                registers.setAccumulator(result);
                 break;
             case 2: //XOR
-                //ALU.xor();
+                registerValue = registers.read(register);
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.xor(accumulatorValue, registerValue);
+                registers.setAccumulator(result);
                 break;
             case 3: //ADDC
-                //ALU.addc();
+                registerValue = registers.read(register);
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.addc(accumulatorValue, registerValue);
+                registers.setAccumulator(result);
                 break;
             case 4: //SUB
-                //ALU.sub();
+                registerValue = registers.read(register);
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.sub(accumulatorValue, registerValue);
+                registers.setAccumulator(result);
                 break;
             case 5: //MUL
                 //TODO, change multiply to parse these 2 8bit inputs into the 4 LSB.
                 registerValue = registers.read(register);
                 accumulatorValue = registers.getAccumulator();
-                result = ALU.multiply(accumulatorValue, registerValue);
+                result = ALU.mul(accumulatorValue, registerValue);
                 registers.setAccumulator(result);
                 break;
             case 6: //NEG
-                //ALU.neg();
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.neg(accumulatorValue);
+                registers.setAccumulator(result);
                 break;
             case 7: //NOT
-                //ALU.not();
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.not(accumulatorValue);
+                registers.setAccumulator(result);
                 break;
             case 8: //RLC
-                //ALU.rlc();
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.rlc(accumulatorValue);
+                registers.setAccumulator(result);
                 break;
             case 9: //RRC
-                //ALU.rrc();
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.rrc(accumulatorValue);
+                registers.setAccumulator(result);
                 break;
             case 10: //LDA rf
                 ldaRegister(register);
