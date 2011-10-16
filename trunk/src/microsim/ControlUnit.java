@@ -134,22 +134,22 @@ public class ControlUnit {
                 ldi(operand);
                 break;
             case 16: //BRZ
-                //brz();
+                brz();
                 break;
             case 17: //BRC
-                //brc();
+                brc();
                 break;
             case 18: //BRN
-                //brn();
+                brn();
                 break;
             case 19: //BRO
-                //bro();
+                bro();
                 break;
             case 31: //STOP
-                //stop();
+                stop();
                 break;
             case 24: //NOP
-                //nop();
+                nop();
                 break;
             default: System.out.println("Invalid Opcode");
         }
@@ -206,5 +206,15 @@ public class ControlUnit {
     
     public void stop(){
         //TODO: WTF
+    }
+    
+    public void nextStep(){
+        registers.setIR(memory.getWord(registers.getPC()));
+        registers.incrementPC();
+        executeInstruction(registers.getIR());
+    }
+    
+    public void run(){
+        
     }
 }
