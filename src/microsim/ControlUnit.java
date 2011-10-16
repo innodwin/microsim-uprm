@@ -32,7 +32,7 @@ public class ControlUnit {
         for(int i=0;i<size;i++){
            String binInst = InstructionParser.parse(hexInstructions.get(i));
            String address = Integer.toBinaryString(i);
-           memory.setContent(address, binInst);
+           memory.setByte(address, binInst);
         }
     }
     
@@ -129,13 +129,13 @@ public class ControlUnit {
     }
     
     public void ldaAddress(String address){
-        String addressContent = registers.read(address);
+        String addressContent = memory.getByte(address);
         registers.setAccumulator(addressContent);
     }
     
     public void staAddress(String address){
         String accumulatorValue = registers.getAccumulator();
-        registers.write(address, accumulatorValue);
+        memory.setByte(address, accumulatorValue);
     }
     
     public void ldi(String immediate){
