@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Handles the Instructions received from the file
- * @author damian
+ * @author Damian Esteves, Luis Rosario
  */
 public class ControlUnit {
 

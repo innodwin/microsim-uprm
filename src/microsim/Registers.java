@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author damian
+ * @author Luis Rosario
  */
 
 /* First 8 positions in the array are reserved for the 
