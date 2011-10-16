@@ -32,14 +32,29 @@ public class Memory {
         }
     }
     
-    public String getContent(String address)
+    public String getByte(String address)
     {
-        int dir = Integer.parseInt(address, 2);
-        return memory.get(dir);
+        int intAddress = Integer.parseInt(address, 2);
+        return memory.get(intAddress);
     }
     
-    public void setContent(String address, String content)
+    public void setByte(String address, String content)
     {
         memory.add(Integer.parseInt(address, 2), content);        
+    }
+    
+    public String getWord(String address){
+        int intAddress = Integer.parseInt(address, 2);
+        int mod = intAddress%2;
+        String instruction;
+        if(mod == 0)
+            instruction = memory.get(intAddress) + memory.get(intAddress+1);
+        else
+            instruction = memory.get(intAddress-1) + memory.get(intAddress);
+        return instruction;
+    }
+    
+    public void setWord(String address, String value){
+        
     }
 }
