@@ -39,10 +39,10 @@ public class ControlUnit {
     public void executeInstruction(String InstructionRegister){
         String opcode = InstructionParser.opcode(InstructionRegister);
         String register = InstructionParser.register(InstructionRegister);
-        String registerValue = registers.read(InstructionParser.register(InstructionRegister));
         String operand = InstructionParser.operand(InstructionRegister);
-        String accumulator = registers.getAccumulator();
-        String result = "";
+        String accumulatorValue;
+        String registerValue;
+        String result;
         
         int intopcode = Integer.parseInt(opcode, 2);
         switch(intopcode){
@@ -63,7 +63,9 @@ public class ControlUnit {
                 break;
             case 5: //MUL
                 //TODO, change multiply to parse these 2 8bit inputs into the 4 LSB.
-                result = ALU.multiply(accumulator, registerValue);
+                registerValue = registers.read(register);
+                accumulatorValue = registers.getAccumulator();
+                result = ALU.multiply(accumulatorValue, registerValue);
                 registers.setAccumulator(result);
                 break;
             case 6: //NEG
@@ -79,10 +81,10 @@ public class ControlUnit {
                 //ALU.rrc();
                 break;
             case 10: //LDA rf
-                //ldarf();
+                ldaRegister(register);
                 break;
             case 11: //STA rf
-                //starf();
+                staRegister(register);
                 break;
             case 12: //LDA addr
                 //ldaddr();
@@ -116,7 +118,21 @@ public class ControlUnit {
         
     }
  
-    public void ldarf(){
+    public void ldaRegister(String register){
+        String registerValue = registers.read(register);
+        registers.setAccumulator(registerValue);
+    }
+    
+    public void staRegister(String register){
+        String accumulatorValue = registers.getAccumulator();
+        registers.write(register, accumulatorValue);
+    }
+    
+    public void ldaAddress(String operand){
+        
+    }
+    
+    public void staAddress(String operand){
         
     }
 }
