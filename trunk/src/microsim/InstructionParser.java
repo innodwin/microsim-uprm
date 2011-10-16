@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package microsim;
 
 /**
- *
+ * InstructionParser is used as a toolset to manipulate Strings representing
+ * instructions in either hexadecimal or binary formats.
  * @author Damian Esteves
  */
 public class InstructionParser {
@@ -35,9 +32,9 @@ public class InstructionParser {
     }
     
     /**
-     * Extracts the OpCode from a String that is already in binary format
+     * Extracts the 5 Opcode bits from a binary instruction String
      * @param binaryInstruction
-     * @return The 5 opcode bits in a binary String
+     * @return The 5 Opcode bits in a binary String
      */
     public static String opcode(String binaryInstruction){        
         String opcode = binaryInstruction.substring(0, 5);
@@ -45,9 +42,9 @@ public class InstructionParser {
     }
     
     /**
-     * 
+     * Extracts the 3 Register bits from a binary instruction String.
      * @param binaryInstruction
-     * @return
+     * @return the 3 Register bits in a binary String
      */
     public static String register(String binaryInstruction){
         String register = binaryInstruction.substring(5, 8);
@@ -55,9 +52,9 @@ public class InstructionParser {
     }
     
     /**
-     * 
+     * Extracts the 8 Operand bits from from a binary instruction String
      * @param binaryInstruction
-     * @return
+     * @return The 8 Operand bits in a binary String
      */
     public static String operand(String binaryInstruction){
         String operand = binaryInstruction.substring(8, 16);
