@@ -20,12 +20,10 @@ public class ALU {
         
     }
     
-    public static String multiply(String op1, String op2)
+    public static String multiply(String accumulator, String register)
     {
-       if(op1.length()>4 || op2.length()>4){
-           System.out.println("Problem multiplying: Operand bigger than 4 bits: A & B: " + op1 + " "+ op2);
-           return "";
-       }
+       String op1 = accumulator.substring(4, 8);
+       String op2 = register.substring(4,8);
        Tools t = new Tools();
        int tmp1 = t.binToDec(op1);
        int tmp2 = t.binToDec(op2);
