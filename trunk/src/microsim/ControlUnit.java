@@ -38,7 +38,7 @@ public class ControlUnit {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String strLine;
         while ((strLine = br.readLine()) != null)   {
-            System.out.println (strLine);
+           // System.out.println (strLine);
             hexInstructions.add(strLine);
         }
          in.close();
@@ -52,7 +52,9 @@ public class ControlUnit {
         int count = 0;
         for(int i=0;i<size;i++){
            String binInst = InstructionParser.parse(hexInstructions.get(i));
+          // System.out.println(binInst);
            String address = Integer.toBinaryString(i*2);
+           //System.out.println(address);
            memory.setWord(address, binInst);
         }
     }
