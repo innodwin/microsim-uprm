@@ -46,15 +46,20 @@ public class Memory {
     public String getWord(String address){
         int intAddress = Integer.parseInt(address, 2);
         int mod = intAddress%2;
-        String instruction;
+        String word;
         if(mod == 0)
-            instruction = memory.get(intAddress) + memory.get(intAddress+1);
+            word = memory.get(intAddress) + memory.get(intAddress+1);
         else
-            instruction = memory.get(intAddress-1) + memory.get(intAddress);
-        return instruction;
+            word = memory.get(intAddress-1) + memory.get(intAddress);
+        return word;
     }
     
     public void setWord(String address, String value){
+        int intAddress = Integer.parseInt(address, 2);
+        String byte1 = value.substring(0,8);
+        String byte2 = value.substring(8, 16);
+        memory.set(intAddress, byte1);
+        memory.set(intAddress+1,byte2);
         
     }
 }
