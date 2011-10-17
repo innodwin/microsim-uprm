@@ -6,11 +6,16 @@ package microsim;
 
 /**
  *
- * @author luillo
+ * @author Luis Rosario
  */
 public class Tools {
     private final int ERROR = -1300;
-  public boolean isBinary(String input) {
+    /**
+     * Tests if a String value if in binary form.
+     * @param input
+     * @return True if the value is value is binary, else false.
+     */
+    public boolean isBinary(String input) {
  
          boolean check = true;
          
@@ -26,6 +31,12 @@ public class Tools {
          return check;
 }
   
+  /**
+   * put the leading zeros to a value to match the size especified.
+   * @param size
+   * @param value
+   * @return the String with the correct size of bits.
+   */
   public static String extendBinaryValue(int size,String value){
       int wordSize = value.length();
       String strToReturn = "";
@@ -42,6 +53,12 @@ public class Tools {
       return strToReturn;  
   }
   
+  /**
+   * Change a binary value to a decimal representation.
+   * @param value
+   * @return an integer that contains the decimal representation of the value
+   * provided.
+   */
   public int binToDec(String value)
   {
       int valToReturn;
@@ -54,6 +71,11 @@ public class Tools {
       return valToReturn;
   }
   
+  /**
+   * 
+   * @param binNum
+   * @return
+   */
   public static int signedBinToDec(String binNum){
       
       int intNum = 0;
@@ -67,6 +89,11 @@ public class Tools {
       
   }
   
+  /**
+   * 
+   * @param binNum
+   * @return
+   */
   public static String byteSizedBinValue(String binNum){
       return binNum.substring(binNum.length()-8, binNum.length());
   }
