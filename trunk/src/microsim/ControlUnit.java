@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class ControlUnit {
 
-    private Memory memory = new Memory(); //memory object to be used in the microprocessor
-    private Registers registers = new Registers(); //register object to be used in the microprocessor
+    protected static Memory memory = new Memory(); //memory object to be used in the microprocessor
+    protected static Registers registers = new Registers(); //register object to be used in the microprocessor
     private ArrayList<String> hexInstructions = new ArrayList<String>(64); //ArrayList to hold the original hexadecimal instructions
     private File instructionFile; //File object that will hold the text file with instructions
     private boolean stop = false; //Boolean for handling the STOP instruction and stopping execution.
