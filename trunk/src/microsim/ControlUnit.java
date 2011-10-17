@@ -162,7 +162,6 @@ public class ControlUnit {
                 registers.setAccumulator(result);
                 break;
             case 5: //MUL
-                //TODO, change multiply to parse these 2 8bit inputs into the 4 LSB.
                 registerValue = registers.read(register);
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.mul(accumulatorValue, registerValue);
@@ -313,16 +312,10 @@ public class ControlUnit {
      * 
      */
     public void stop(){
-        //TODO: Figure out how to stop execution.
-        /*
-         * Possibly have the the stop() set a custom flag that is checked at
-         * the beginning of every nextStep(), if the flag is set, then next step
-         * does not run and the simulator is set back into initialization mode.
-         */
         stop = true;
         
     }
-    //TODO: I'm not sure if this stopFlag shit makes sense, but fuck it
+    
     /**
      * 
      */
@@ -342,7 +335,6 @@ public class ControlUnit {
      * 
      */
     public void run(){
-        //TODO: figure out the condition to put inside the while
         do
             nextStep();
         while(!stop);
