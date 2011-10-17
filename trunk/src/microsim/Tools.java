@@ -26,7 +26,7 @@ public class Tools {
          return check;
 }
   
-  public String extendBinaryValue(int size,String value){
+  public static String extendBinaryValue(int size,String value){
       int wordSize = value.length();
       String strToReturn = "";
       String sign ="0";//value.charAt(0);

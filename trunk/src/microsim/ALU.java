@@ -10,7 +10,6 @@ package microsim;
  */
 public class ALU {
     
-    private static Registers registers = new Registers();
     private static final int ZERO = 0;
     private static final int CARRY = 1;
     private static final int NEGATIVE = 2;
@@ -74,25 +73,32 @@ public class ALU {
      */
     public static String addc(String accumulator, String register)
     {
-        String carry = registers.getSR(CARRY);
-        
-        int acc = Integer.parseInt(accumulator, 2);
-	int reg = Integer.parseInt(register,2);
+         
+        int acc = Tools.signedBinToDec(accumulator);
+	int reg = Tools.signedBinToDec(register);
         int result = 0;
         String sum = "";
+        result = acc + reg;
         
-        if(Integer.signum(acc)==-1&&Integer.signum(reg)==-1){
-            result = acc + reg;
-            if(result==-256){
-                registers.setSR(OVERFLOW, "1");
-                if(registers.getSR(CARRY).equals("1"))
+        if(result==-256||result==256){
+            
+            ControlUnit.registers.setSR(OVERFLOW, "1");
+            if(ControlUnit.registers.getSR(CARRY).equals("1"))
                     result++;
-            }
+            sum = Tools.extendBinaryValue(8, Integer.toBinaryString(result));
+            
+        }else if(Integer.signum(result)==-1){
+            
+            ControlUnit.registers.setSR(NEGATIVE, "1");
+            if(ControlUnit.registers.getSR(CARRY).equals("1"))
+                    result++;
             sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
-        }else if(acc<reg){
             
         }else{
-            result = acc + reg;
+            
+            if(ControlUnit.registers.getSR(CARRY).equals("1"))
+                    result++;
+            sum = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
         }
         
 	return sum;
@@ -111,18 +117,18 @@ public class ALU {
 	int reg = Tools.signedBinToDec(register);
         int result=0;
         String sub = "";
-	
-        if(Integer.signum(acc)==-1&&Integer.signum(reg)==1){
-            result = acc - reg;
-            if(result==-256){
-                registers.setSR(OVERFLOW, "1");
-            }
+        result = acc - reg;
+        if(result==256||result==-256){
+            
+            ControlUnit.registers.setSR(OVERFLOW, "1");
+            sub = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
+            
+        }else if(Integer.signum(result)==-1){
+            ControlUnit.registers.setSR(NEGATIVE, "1");
             sub = Tools.byteSizedBinValue(Integer.toBinaryString(result));
-        }else if(acc<reg){
-            registers.setSR(NEGATIVE, "1");
             
         }else{
-            acc = acc - reg;
+            sub = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
         }
         
 	return sub;
@@ -155,9 +161,10 @@ public class ALU {
     }
     
     /**
-     * 
-     * @param accumulator
-     * @return
+     * Logical NOT operator. Takes the value stored in the accumulator and applies
+     * the NOT operation.
+     * @param accumulator has the value to be modified
+     * @return the modified result
      */
     public static String not(String accumulator)
     {
@@ -202,7 +209,7 @@ public class ALU {
             intNeg=0;
             neg = Integer.toBinaryString(intNeg);
             neg = t.extendBinaryValue(8, neg);
-            registers.setSR(OVERFLOW, "1");
+            ControlUnit.registers.setSR(OVERFLOW, "1");
         }else{
             intNeg++;
             neg = Integer.toBinaryString(intNeg);
@@ -221,9 +228,9 @@ public class ALU {
      */
     public static String rlc(String accumulator)
     {
-        String oldCarry = registers.getSR(CARRY);
+        String oldCarry = ControlUnit.registers.getSR(CARRY);
         String newCarry = ""+accumulator.charAt(0);
-        registers.setSR(CARRY, newCarry);
+        ControlUnit.registers.setSR(CARRY, newCarry);
         accumulator = accumulator.substring(1, 8)+oldCarry;
         
         return accumulator;
@@ -238,9 +245,9 @@ public class ALU {
      */
     public static String rrc(String accumulator)
     {
-        String oldCarry = registers.getSR(CARRY);
+        String oldCarry = ControlUnit.registers.getSR(CARRY);
         String newCarry = ""+accumulator.charAt(7);
-        registers.setSR(CARRY, newCarry);
+        ControlUnit.registers.setSR(CARRY, newCarry);
         accumulator = oldCarry+accumulator.substring(0, 7);
         
         return accumulator;
