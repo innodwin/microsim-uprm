@@ -218,12 +218,11 @@ public class ControlUnit {
             String addressContent = memory.getByte(address); 
             registers.setAccumulator(addressContent);
         }
-
     }
     
     /**
-     * 
-     * @param address
+     * Native Instruction: STA addr - Store accumulator to memory location
+     * @param address The address to which the accumulator will be copied
      */
     public void staAddress(String address){
         String accumulatorValue = registers.getAccumulator();
@@ -231,15 +230,15 @@ public class ControlUnit {
     }
     
     /**
-     * 
-     * @param immediate
+     * Native Instruction: LDI - Load immediate value from operand into accumulator
+     * @param immediate The explicit value to be loaded
      */
     public void ldi(String immediate){
         registers.setAccumulator(immediate);
     }
     
     /**
-     * 
+     * Native Instruction: BRZ - Branches if Zero Flag is set by copying contents of R7 to PC
      */
     public void brz(){
         if(registers.getSR(ZERO).equals("1"))
@@ -247,7 +246,7 @@ public class ControlUnit {
     }
     
     /**
-     * 
+     * Native Instruction: BRC - Branches if Carry Flag is set by copying contents of R7 to PC
      */
     public void brc(){
         if(registers.getSR(CARRY).equals("1"))
@@ -255,7 +254,7 @@ public class ControlUnit {
     }
     
     /**
-     * 
+     * Native Instruction: BRN - Branches if Negative Flag is set by copying contents of R7 to PC
      */
     public void brn(){
         if(registers.getSR(NEGATIVE).equals("1"))
@@ -263,7 +262,7 @@ public class ControlUnit {
     }
     
     /**
-     * 
+     * Native Instruction: BRO - Branches if Overflow Flag is set by copying contents of R7 to PC
      */
     public void bro(){
         if(registers.getSR(OVERFLOW).equals("1"))
@@ -271,14 +270,14 @@ public class ControlUnit {
     }
     
     /**
-     * 
+     * Native Instruction: NOP - Does nothing.
      */
     public void nop(){
         System.out.println("Yup. Nothing happened.");
     }
     
     /**
-     * 
+     * Native Instruction: STOP - Stops execution
      */
     public void stop(){
         stop = true;
@@ -286,10 +285,10 @@ public class ControlUnit {
     }
     
     /**
-     * 
+     * Operates the simulator one instruction at a time.
      */
     public void nextStep(){
-        if(!stop){
+        if(!stop){ //Checks if the previous instruction was STOP
             registers.setIR(memory.getWord(registers.getPC()));
             registers.incrementPC();
             executeInstruction();
