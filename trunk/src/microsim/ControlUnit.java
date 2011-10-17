@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Control Unit class handles the overall operation, execution flow, and branching of the microprocessor.
  * In addition, it also handles the load and store related instructions.
- * @author Damian Esteves, Luis Rosario
+ * @author Damian Esteves
  */
 public class ControlUnit {
 
@@ -286,48 +286,51 @@ public class ControlUnit {
     
     /**
      * Operates the simulator one instruction at a time.
+     * Checks for previous stop instruction, sets the IR from the PC, and executes the instruction
+     * If the stop instruction was executed previously, it reinitializes the simulator.
      */
     public void nextStep(){
         if(!stop){ //Checks if the previous instruction was STOP
-            registers.setIR(memory.getWord(registers.getPC()));
+            registers.setIR(memory.getWord(registers.getPC())); //Gets the PC, uses it as an address to get the instruction Word from memory, and sets it as the next PC
             registers.incrementPC();
             executeInstruction();
         }
-        else
-            //Pop up window "STOP instruction received, reinitializing simulator"
+        else{
             initialize();
-            
+            System.out.println("Simulator has been reinitialized"); //TODO:Implement this message in a popup window
+        }
     }
     
     /**
-     * 
+     * Operates the emulator in Run mode. All the instructions in memory are run sequentially and without interruption (except for a keyboard prompt if present)
      */
     public void run(){
         do
             nextStep();
         while(!stop);
-        //Pop up window "STOP instruction received, reinitializing simulator"
+        System.out.println("STOP instruction received, reinitializing simulator"); //TODO: Implement this message in a popup window
         initialize();
         
     }
-    
+    /**
+     * Initializes the simulator: Copies instructions to memory and initializes the PC to address 00h
+     */
     private void initialize(){
         instructionsToMemory();
-        memory.showMemory();
         registers.setPC("00000000");
         
     }
     /**
-     * 
-     * @return
+     * Implemented so the GUI will have access to the Registers for display purposes.
+     * @return The Registers object used in the Control Unit
      */
     public Registers getRegisters(){
         return this.registers;
     }
     
     /**
-     * 
-     * @return
+     * Implemented so the GUI will have access to the Memory for display purposes.
+     * @return The Memory object used in the Control Unit
      */
     public Memory getMemory(){
         return this.memory;
