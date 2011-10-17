@@ -30,9 +30,10 @@ public class Registers {
     private ArrayList <String> registers;
     private Tools t = new Tools();
     
- //**************************************************************************************
- //Default Constructor
- //**************************************************************************************
+ 
+    /**
+     * Default Constructor. initializes the register class. Sets all registers to 0;
+     */
     public Registers()
     {
         registers = new ArrayList <String>();
@@ -43,14 +44,12 @@ public class Registers {
 
     }
     
-//**************************************************************************************    
     /**
      * Writes a binary value to one of the special purpose registers
-     * @param addr
+     * @param address 
      * @param value
      * @return An error code in the negative range numbers. If successful returns 1.
      */
-//**************************************************************************************
     public int write(String address,String value ){
         int addr = 0;
         int val = 0;
@@ -78,14 +77,12 @@ public class Registers {
         
     }
 
-//**************************************************************************************
     /**
      * Reads a register from 0-7. Or from R1-R8.
      * @param register
      * @return A String of  binary characters representing the content of the specified
      * register.
      */
-//**************************************************************************************
     public String read(String register) {
         int addr = 0;
         try{
@@ -105,14 +102,11 @@ public class Registers {
     }
     
     
-//**************************************************************************************
 /**
      * Sets the value of the Program Counter. Value must be in binary.
      * @param value
      * @return an error code if invalid. 1 if the operation was successful.
-     */
-//**************************************************************************************
-  
+     */  
     public int setPC(String value)
     {
         if(!t.isBinary(value))
@@ -124,24 +118,20 @@ public class Registers {
         return 1;
     }
 
-//**************************************************************************************
     /**
      * //Gets the value of the Program Counter
      * @return  the Program Counter in its binary form.
      */
-//**************************************************************************************
     public String getPC()
     {
         return registers.get(PCINDEX);
     }
 
-//**************************************************************************************
     /**
      * Sets the value of the Accumulator. Value must be in binary.
      * @param value
      * @return an error code if invalid. 1 if the operation was successful.
      */
-//**************************************************************************************
     public int setAccumulator(String value)
     {
         if(!t.isBinary(value))
@@ -153,20 +143,21 @@ public class Registers {
         return 1;
     }
 
-//**************************************************************************************
         /**
          * Gets the value of the Accumulator
          * @return The Accumulator value in its binary form.
          */
-//************************************************************************************** 
     public String getAccumulator()
     {
         return registers.get(ACCUMULATORINDEX);
     }
 
-//**************************************************************************************
-//Sets the value of the Instruction Register
-//************************************************************************************** 
+
+    /**
+     * Sets the value of the Instruction Register
+     * @param value
+     * @return error code if error. 1 if the operation was successful.
+     */
     public int setIR(String value)
     {
         if(!t.isBinary(value))
@@ -178,18 +169,24 @@ public class Registers {
         return 1;
     }
 
-//**************************************************************************************
-//Gets the value of the Instruction Register
-//************************************************************************************** 
+    /**
+     * Gets the value of the Instruction Register
+     * @return the Instruction register.
+     */
     public String getIR()
     {
         return registers.get(IRINDEX);
     }
 
-//**************************************************************************************
-//Sets the value of the Status Register
-//************************************************************************************** 
-     public int setSR(int flagType,String value)
+
+    /**
+     * Sets the value of the Status Register
+     * @param flagType
+     * @param value
+     * @return and error code if error. 1 if the operation
+     * was successful.
+     */
+    public int setSR(int flagType,String value)
     {
         if(!t.isBinary(value))
             return INVALIDFORMAT;
@@ -211,18 +208,23 @@ public class Registers {
         registers.add(SRINDEX, tmp);
         return 1;
     }
-//**************************************************************************************
-//Sets the value of the Program Counter
-//**************************************************************************************    
+
+    
+    /**
+     * Sets the value of the Program Counter
+     * @param index
+     * @return the Flag selected by the index.
+     */
     public String getSR(int index)
     {
         if(index > 3)
             return "";
         return String.valueOf(registers.get(SRINDEX).charAt(index));
     }
-//**************************************************************************************
-//Sets the value of the Program Counter
-//**************************************************************************************       
+  
+    /**
+     * Increments the value of the program counter by 2.
+     */
     public void incrementPC(){
         int tmp  = Integer.parseInt(this.registers.get(PCINDEX),2);
         tmp += 2;

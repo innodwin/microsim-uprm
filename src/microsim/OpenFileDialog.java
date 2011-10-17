@@ -98,17 +98,28 @@ public class OpenFileDialog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
+    /**
+     * 
+     */
     @Action
     public void ok() {
         this.setVisible(false);
     }
 
+    /**
+     * Sets the file value to null and hides the dialog box.
+     */
     @Action
     public void Cancel() {
         this.setVisible(false);
         this.file = null;
     }
 
+    /**
+     * When the user presses the select button, It shows
+     * a file chooser window and the user selects the file.
+     * It also sets the file text file to the file selected.
+     */
     @Action
     public void select() {
         JFileChooser chooser = new JFileChooser();
@@ -117,10 +128,17 @@ public class OpenFileDialog extends javax.swing.JFrame {
         this.jTextField1.setText(file.getName());
     }
     
+    /**
+     * 
+     * @return the file selected by the user.
+     */
     public File getFile(){
         return file;
     }
     
+    /**
+     * Delay to wait for the input of the user.
+     */
     public void waitForInput(){
         while(file == null){}
     }
