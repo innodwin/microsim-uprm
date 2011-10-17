@@ -99,7 +99,7 @@ public class ControlUnit {
         }
          in.close();
          
-         initialize();
+         init();
     }
     
     /**
@@ -320,14 +320,14 @@ public class ControlUnit {
      * 
      */
     public void nextStep(){
-        if(stop){
+        if(!stop){
             registers.setIR(memory.getWord(registers.getPC()));
             registers.incrementPC();
             executeInstruction(registers.getIR());
         }
         else
             //Pop up window "STOP instruction received, reinitializing simulator"
-            initialize();
+            init();
             
     }
     
@@ -339,14 +339,17 @@ public class ControlUnit {
             nextStep();
         while(!stop);
         //Pop up window "STOP instruction received, reinitializing simulator"
-        initialize();
+        init();
         
     }
     
-    public void initialize(){
+    private void init(){
         instructionsToMemory();
-         memory.showMemory();
-         registers.setPC("00000000");
+        memory.showMemory();
+        registers.setPC("00000000");
         
+    }
+    public Registers getRegister(){
+        return this.registers;
     }
 }
