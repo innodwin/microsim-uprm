@@ -23,6 +23,7 @@ public class ControlUnit {
     private Registers registers = new Registers();
     private ArrayList<String> hexInstructions = new ArrayList<String>(64);    
     File instructionFile;
+    private IO io;
     /**
      * 
      */
@@ -248,8 +249,14 @@ public class ControlUnit {
      * @param address
      */
     public void ldaAddress(String address){
-        String addressContent = memory.getByte(address);
-        registers.setAccumulator(addressContent);
+        int intAddress = Integer.parseInt(address, 2);
+        if(intAddress == 250 || intAddress == 251)
+            io.readChar();
+        else{
+            String addressContent = memory.getByte(address);
+            registers.setAccumulator(addressContent);
+        }
+
     }
     
     /**
@@ -349,7 +356,12 @@ public class ControlUnit {
         registers.setPC("00000000");
         
     }
-    public Registers getRegister(){
+    public Registers getRegisters(){
         return this.registers;
     }
+    
+    public Memory getMemory(){
+        return this.memory;
+    }
+    
 }
