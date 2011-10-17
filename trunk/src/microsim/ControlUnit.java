@@ -212,10 +212,10 @@ public class ControlUnit {
     public void ldaAddress(String address){
         int intAddress = Integer.parseInt(address, 2); //parses address to integer
         if(intAddress == 250 || intAddress == 251) //if the address is 250 or 251, they are keyboard inputs to be requested
-            //TODO:
+            //TODO: Read from keyboard and save to accumulator and address
             io.readChar(); 
-        else{
-            String addressContent = memory.getByte(address);
+        else{//Else, simply copy memory to accumulator
+            String addressContent = memory.getByte(address); 
             registers.setAccumulator(addressContent);
         }
 
