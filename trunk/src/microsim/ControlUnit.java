@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package microsim;
 
 import java.io.BufferedReader;
@@ -14,127 +10,88 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Handles the Instructions received from the file
+ * Control Unit class handles the overall operation, execution flow, and branching of the microprocessor.
+ * In addition, it also handles the load and store related instructions.
  * @author Damian Esteves, Luis Rosario
  */
 public class ControlUnit {
 
-    private Memory memory = new Memory();
-    private Registers registers = new Registers();
-    private ArrayList<String> hexInstructions = new ArrayList<String>(64);    
-    File instructionFile;
-    private IO io;
-    /**
-     * 
-     */
-    public static final int ZERO = 0;
-    /**
-     * 
-     */
-    public static final int CARRY = 1;
-    /**
-     * 
-     */
-    public static final int NEGATIVE = 2;
-    /**
-     * 
-     */
-    public static final int OVERFLOW = 3;
-    /**
-     * 
-     */
-    public static final String R1 = "000";
-    /**
-     * 
-     */
-    public static final String R2 = "001";
-    /**
-     * 
-     */
-    public static final String R3 = "010";
-    /**
-     * 
-     */
-    public static final String R4 = "011";
-    /**
-     * 
-     */
-    public static final String R5 = "100";
-    /**
-     * 
-     */
-    public static final String R6 = "101";
-    /**
-     * 
-     */
-    public static final String R7 = "110";
-    /**
-     * 
-     */
-    public static final String R8 = "111";
-    private boolean stop = false;
+    private Memory memory = new Memory(); //memory object to be used in the microprocessor
+    private Registers registers = new Registers(); //register object to be used in the microprocessor
+    private ArrayList<String> hexInstructions = new ArrayList<String>(64); //ArrayList to hold the original hexadecimal instructions
+    File instructionFile; //File object that will hold the text file with instructions
+    private boolean stop = false; //Boolean for handling the STOP instruction and stopping execution.
+    private IO io; //Used for handling keyboard input
+    
+    //Constants for accessing the SR flags
+    private static final int ZERO = 0;
+    private static final int CARRY = 1; 
+    private static final int NEGATIVE = 2;
+    private static final int OVERFLOW = 3; 
+    //Constants for accessing the Registers
+    private static final String R1 = "000";
+    private static final String R2 = "001";
+    private static final String R3 = "010";
+    private static final String R4 = "011";
+    private static final String R5 = "100";
+    private static final String R6 = "101";
+    private static final String R7 = "110";
+    private static final String R8 = "111";
+
 
 
     /**
-     * 
-     * @param instructions
-     * @throws FileNotFoundException
-     * @throws IOException
+     * Constructor creates the Control Unit, parses the instructions from input file into memory, and initializes the microprocessor.
+     * @param instructions The text file with the instructions to be loaded into memory for execution
+     * @throws FileNotFoundException Exception thrown when the user points the simulator to a nonexistent file
+     * @throws IOException IO Exception when reading file
      */
     public ControlUnit(File instructions) throws FileNotFoundException, IOException {        
-        /*
-         * Pseudocode tentativo:
-         * 
-         * Grab file, insert instructions in hex into a string.
-         * Make ArrayList of hex instructions. ArrayList size 128.
-         * check length of instructions is 4 characters before inserting. If <4 throw error.
-         * 
-         */
+        //Initializations for reading from file
         FileInputStream fstream = new FileInputStream(instructions);
         DataInputStream in = new DataInputStream(fstream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String strLine;
-        int lineNumber = 0;
-        while ((strLine = br.readLine()) != null)   {
-            lineNumber++;
-            if(strLine.length()== 4)
-                hexInstructions.add(strLine);
+        int lineNumber = 0; //line counter for reporting what line number an improper isntruction was found
+        while ((strLine = br.readLine()) != null)   { //reads from file until finding and empty line
+            lineNumber++; //increments line counter
+            if(strLine.length()== 4) //Verifies that the instruction is of proper length (4)
+                System.out.println("Invalid instruction at line: " +lineNumber); //If an instruction is improper, it lets the user know via the console    
+            else if(hexInstructions.size() >= 64) //Verifies if the code segment in memory is full
+                System.out.println("64 instructions in memory. Code segment full"); //Lets the user know of the full code segment via the console
             else
-                System.out.println("Invalid instruction at line: " +lineNumber);
+                hexInstructions.add(strLine); //Finally, adds an instruction into the ArrayList
         }
-         in.close();
+         in.close(); //Close input scanner
          
-         init();
+         initialize(); //Calls the method to initialize the microprocessor for operation
     }
     
     /**
-     * 
+     * Parses the instructions from the hexadecimal ArrayList into binary Strings, and copies them into the memory's code segment
      */
     public void instructionsToMemory(){
-        int size = hexInstructions.size();
-        int count = 0;
+        int size = hexInstructions.size(); //Gets the total number of instructions to be inserted into memory
         for(int i=0;i<size;i++){
-           String binInst = InstructionParser.parse(hexInstructions.get(i));
-           //System.out.println(binInst);
-           String address = Integer.toBinaryString(i*2);
-           //System.out.println(address);
-           memory.setWord(address, binInst);
+           String binInstruction = InstructionParser.parse(hexInstructions.get(i)); //Parses instruction from hexadecimal to binary
+           String address = Integer.toBinaryString(i*2); //multiplies address by two to get addresses in increments of two bytes (Word)
+           memory.setWord(address, binInstruction); //Sets the instruction into memory
         }
     }
     
     /**
-     * 
-     * @param InstructionRegister
+     * Executes the instruction currently in the Instruction Register
      */
-    public void executeInstruction(String InstructionRegister){
-        String opcode = InstructionParser.opcode(InstructionRegister);
-        String register = InstructionParser.register(InstructionRegister);
-        String operand = InstructionParser.operand(InstructionRegister);
-        String accumulatorValue;
-        String registerValue;
-        String result;
+    public void executeInstruction(){
+        String InstructionRegister = registers.getIR(); //Grabs the instruction from the IR
+        String opcode = InstructionParser.opcode(InstructionRegister); //Grabs the Opcode
+        String register = InstructionParser.register(InstructionRegister); //Grabs the register
+        String operand = InstructionParser.operand(InstructionRegister); //Grabs the operand
+        String accumulatorValue; //String that will hold the accumulator value when needed
+        String registerValue; //String that will hold the register value when needed
+        String result; //String to hold results of operations
         
-        int intopcode = Integer.parseInt(opcode, 2);
+        int intopcode = Integer.parseInt(opcode, 2); //Parses the opcode into a digit in order to use it in the following Switch
         switch(intopcode){
             case 0: //AND
                 registerValue = registers.read(register);
@@ -225,14 +182,14 @@ public class ControlUnit {
             case 24: //NOP
                 nop();
                 break;
-            default: System.out.println("Invalid Opcode");
+            default: System.out.println("Invalid Opcode"); //If the Opcode does not match any of the above, it is incorrect and the user is informed via the console
         }
         
     }
  
     /**
-     * 
-     * @param register
+     * Native Instruction: LDA rf - Copies the specified register into the Accumulator.
+     * @param register The register to be copied
      */
     public void ldaRegister(String register){
         String registerValue = registers.read(register);
@@ -240,8 +197,8 @@ public class ControlUnit {
     }
     
     /**
-     * 
-     * @param register
+     * Native Instruction: STA rf - Copy accumulator to specified register.
+     * @param register The register to be copied to
      */
     public void staRegister(String register){
         String accumulatorValue = registers.getAccumulator();
@@ -249,13 +206,14 @@ public class ControlUnit {
     }
     
     /**
-     * 
-     * @param address
+     * Native Instruction: LDA addr - Load accumulator from memory location
+     * @param address The address of the content to be loaded
      */
     public void ldaAddress(String address){
-        int intAddress = Integer.parseInt(address, 2);
-        if(intAddress == 250 || intAddress == 251)
-            io.readChar();
+        int intAddress = Integer.parseInt(address, 2); //parses address to integer
+        if(intAddress == 250 || intAddress == 251) //if the address is 250 or 251, they are keyboard inputs to be requested
+            //TODO:
+            io.readChar(); 
         else{
             String addressContent = memory.getByte(address);
             registers.setAccumulator(addressContent);
@@ -284,7 +242,7 @@ public class ControlUnit {
      * 
      */
     public void brz(){
-        if(registers.getSR(ZERO).equals(1))
+        if(registers.getSR(ZERO).equals("1"))
             registers.setPC(registers.read(R7));
     }
     
@@ -292,7 +250,7 @@ public class ControlUnit {
      * 
      */
     public void brc(){
-        if(registers.getSR(CARRY).equals(1))
+        if(registers.getSR(CARRY).equals("1"))
             registers.setPC(registers.read(R7));
     }
     
@@ -300,7 +258,7 @@ public class ControlUnit {
      * 
      */
     public void brn(){
-        if(registers.getSR(NEGATIVE).equals(1))
+        if(registers.getSR(NEGATIVE).equals("1"))
             registers.setPC(registers.read(R7));
     }
     
@@ -308,7 +266,7 @@ public class ControlUnit {
      * 
      */
     public void bro(){
-        if(registers.getSR(OVERFLOW).equals(1))
+        if(registers.getSR(OVERFLOW).equals("1"))
             registers.setPC(registers.read(R7));
     }
     
@@ -334,11 +292,11 @@ public class ControlUnit {
         if(!stop){
             registers.setIR(memory.getWord(registers.getPC()));
             registers.incrementPC();
-            executeInstruction(registers.getIR());
+            executeInstruction();
         }
         else
             //Pop up window "STOP instruction received, reinitializing simulator"
-            init();
+            initialize();
             
     }
     
@@ -350,20 +308,28 @@ public class ControlUnit {
             nextStep();
         while(!stop);
         //Pop up window "STOP instruction received, reinitializing simulator"
-        init();
+        initialize();
         
     }
     
-    private void init(){
+    private void initialize(){
         instructionsToMemory();
         memory.showMemory();
         registers.setPC("00000000");
         
     }
+    /**
+     * 
+     * @return
+     */
     public Registers getRegisters(){
         return this.registers;
     }
     
+    /**
+     * 
+     * @return
+     */
     public Memory getMemory(){
         return this.memory;
     }
