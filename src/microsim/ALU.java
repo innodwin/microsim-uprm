@@ -11,8 +11,18 @@ package microsim;
 public class ALU {
     
     private static Registers registers = new Registers();
+    private static final int ZERO = 0;
     private static final int CARRY = 1;
+    private static final int NEGATIVE = 2;
+    private static final int OVERFLOW = 3;
     
+    /**
+     * Logical AND operator. Gets from the instruction the register that holds the value
+     * that is going to be ANDed with the value of the accumulator register
+     * @param accumulator the value that holds the accumulator register
+     * @param register the value that holds the register
+     * @return the Logical AND result
+     */
     public static String and(String accumulator, String register)
     {
         int i = 0;
@@ -30,6 +40,13 @@ public class ALU {
         return and;
     }
     
+    /**
+     * Logical OR operator. Gets from the instruction the register that holds the value
+     * that is going to be ORed with the value of the accumulator register
+     * @param accumulator the value that holds the accumulator register
+     * @param register the value that holds the register
+     * @return the Logical OR result
+     */
     public static String or(String accumulator, String register)
     {
         int i = 0;
@@ -47,6 +64,14 @@ public class ALU {
         return or;
     }
     
+    /**
+     * ADD with Carry operator. Gets from the instruction the register that holds the value
+     * that is going to be ADDED with the value of the accumulator register. In addition it
+     * adds the carry flag to the end result
+     * @param accumulator the value that holds the accumulator register
+     * @param register the value that holds the register
+     * @return the ADD with Carry result
+     */
     public static String addc(String accumulator, String register)
     {
         String carry = registers.getSR(CARRY);
@@ -57,27 +82,44 @@ public class ALU {
         if(carry.equals("1"))
             reg++;
 		
-        acc += reg;
-	acc %= 255;
+        acc = acc + reg;
 		
 	Tools t = new Tools();
         
 	return t.extendBinaryValue(8, Integer.toBinaryString(acc));
     }
     
+    /**
+     * Subtraction operator. Gets from the instruction the register that holds the value
+     * that is going to be subtracted with the value of the accumulator register
+     * @param accumulator the value that holds the accumulator register
+     * @param register the value that holds the register
+     * @return the Subtraction result
+     */
     public static String sub(String accumulator, String register)
     {
-        int acc = Long.valueOf(accumulator, 2).intValue();
-	int reg = Long.valueOf(register, 2).intValue();
-		
-        acc -= reg;
-	acc %= 255;
+        int acc = Integer.parseInt(accumulator, 2);
+	int reg = Integer.parseInt(register, 2);
+	
+        if(acc<reg){
+            registers.setSR(NEGATIVE, "1");
+            //
+        }else{
+            acc = acc - reg;
+        }
 	
         Tools t = new Tools();
         
 	return t.extendBinaryValue(8, Integer.toBinaryString(acc));
     }
     
+    /**
+     * Logical XOR operator. Gets from the instruction the register that holds the value
+     * that is going to be XORed with the value of the accumulator register
+     * @param accumulator the value that holds the accumulator register
+     * @param register the value that holds the register
+     * @return the Logical XOR result
+     */
     public static String xor(String accumulator, String register)
     {
         int i = 0;
@@ -97,6 +139,11 @@ public class ALU {
         return xor;
     }
     
+    /**
+     * 
+     * @param accumulator
+     * @return
+     */
     public static String not(String accumulator)
     {
         int i = 0;
@@ -113,20 +160,50 @@ public class ALU {
 	return not;
     }
     
+    /**
+     * Right Rotate with Carry operator. It shifts to the right the bits of the
+     * value that holds the accumulator. It also puts the value of the carry flag
+     * in the most significant bit and the less significant bit to the carry flag
+     * @param accumulator the value that holds the accumulator register
+     * @return the result after the Right Rotate with Carry
+     */
     public static String neg(String accumulator)
     {
-        String neg = "";
+        int i = 0;
+	String neg = "";
 		
-	if(accumulator.charAt(0) == '1')
-            neg.concat("0");
-        else
-            neg.concat("1");
-		
-	neg.concat(accumulator.substring(1, accumulator.length()));
+	while(i > 8){
+            if(accumulator.charAt(i) == '0')
+                neg.concat("1");
+            else
+                neg.concat("0");
+            i++;
+	}
+        
+        Tools t = new Tools();
+        int intNeg = Integer.parseInt(neg, 2);
+        
+        if(intNeg==256){
+            intNeg=0;
+            neg = Integer.toBinaryString(intNeg);
+            neg = t.extendBinaryValue(8, neg);
+            registers.setSR(OVERFLOW, "1");
+        }else{
+            intNeg++;
+            neg = Integer.toBinaryString(intNeg);
+            neg = t.extendBinaryValue(8, neg);
+        }
 		
 	return neg;
     }
     
+    /**
+     * Rotate Left with Carry operator. It shifts to the left the bits of the
+     * value that holds the accumulator. It also puts the value of the carry flag
+     * in the less significant bit and the most significant bit to the carry flag
+     * @param accumulator the value that holds the accumulator register
+     * @return the result after the Rotate Left with Carry
+     */
     public static String rlc(String accumulator)
     {
         String oldCarry = registers.getSR(CARRY);
@@ -137,6 +214,13 @@ public class ALU {
         return accumulator;
     }
     
+    /**
+     * Rotate Right with Carry operator. It shifts to the right the bits of the
+     * value that holds the accumulator. It also puts the value of the carry flag
+     * in the most significant bit and the less significant bit to the carry flag
+     * @param accumulator the value that holds the accumulator register
+     * @return the result after the Rotate Right with Carry
+     */
     public static String rrc(String accumulator)
     {
         String oldCarry = registers.getSR(CARRY);
@@ -147,6 +231,13 @@ public class ALU {
         return accumulator;
     }
     
+    /**
+     * Multiplication operator. Gets from the instruction the register that holds the value
+     * that is going to be multiplied with the value of the accumulator register
+     * @param accumulator the value that holds the accumulator register
+     * @param register the value that holds the register
+     * @return the result after the Multiplication
+     */
     public static String mul(String accumulator, String register)
     {
        String op1 = accumulator.substring(4, 8);
