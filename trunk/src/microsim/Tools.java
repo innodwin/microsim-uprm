@@ -53,6 +53,23 @@ public class Tools {
       
       return valToReturn;
   }
+  
+  public static int signedBinToDec(String binNum){
+      
+      int intNum = 0;
+      
+      if(binNum.charAt(0)=='1')
+          intNum = Integer.parseInt(binNum.substring(1, 8),2)-128;
+      else
+          intNum = Integer.parseInt(binNum,2);
+      
+      return intNum;
+      
+  }
+  
+  public static String byteSizedBinValue(String binNum){
+      return binNum.substring(binNum.length()-8, binNum.length());
+  }
 
 
     
