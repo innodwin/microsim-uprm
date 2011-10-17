@@ -33,7 +33,7 @@ public class Tools {
       
       while(wordSize != size)
       {
-          strToReturn += sign;
+          strToReturn = sign+strToReturn;
           wordSize++;
       }
       
