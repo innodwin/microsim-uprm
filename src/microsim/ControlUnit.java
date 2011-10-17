@@ -19,7 +19,7 @@ public class ControlUnit {
     private Memory memory = new Memory(); //memory object to be used in the microprocessor
     private Registers registers = new Registers(); //register object to be used in the microprocessor
     private ArrayList<String> hexInstructions = new ArrayList<String>(64); //ArrayList to hold the original hexadecimal instructions
-    File instructionFile; //File object that will hold the text file with instructions
+    private File instructionFile; //File object that will hold the text file with instructions
     private boolean stop = false; //Boolean for handling the STOP instruction and stopping execution.
     private IO io; //Used for handling keyboard input
     
