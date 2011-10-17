@@ -76,17 +76,26 @@ public class ALU {
     {
         String carry = registers.getSR(CARRY);
         
-        int acc = Long.valueOf(accumulator, 2).intValue();
-	int reg = Long.valueOf(register, 2).intValue();
+        int acc = Integer.parseInt(accumulator, 2);
+	int reg = Integer.parseInt(register,2);
+        int result = 0;
+        String sum = "";
         
-        if(carry.equals("1"))
-            reg++;
-		
-        acc = acc + reg;
-		
-	Tools t = new Tools();
+        if(Integer.signum(acc)==-1&&Integer.signum(reg)==-1){
+            result = acc + reg;
+            if(result==-256){
+                registers.setSR(OVERFLOW, "1");
+                if(registers.getSR(CARRY).equals("1"))
+                    result++;
+            }
+            sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
+        }else if(acc<reg){
+            
+        }else{
+            result = acc + reg;
+        }
         
-	return t.extendBinaryValue(8, Integer.toBinaryString(acc));
+	return sum;
     }
     
     /**
@@ -98,19 +107,25 @@ public class ALU {
      */
     public static String sub(String accumulator, String register)
     {
-        int acc = Integer.parseInt(accumulator, 2);
-	int reg = Integer.parseInt(register, 2);
+        int acc = Tools.signedBinToDec(accumulator);
+	int reg = Tools.signedBinToDec(register);
+        int result=0;
+        String sub = "";
 	
-        if(acc<reg){
+        if(Integer.signum(acc)==-1&&Integer.signum(reg)==1){
+            result = acc - reg;
+            if(result==-256){
+                registers.setSR(OVERFLOW, "1");
+            }
+            sub = Tools.byteSizedBinValue(Integer.toBinaryString(result));
+        }else if(acc<reg){
             registers.setSR(NEGATIVE, "1");
-            //
+            
         }else{
             acc = acc - reg;
         }
-	
-        Tools t = new Tools();
         
-	return t.extendBinaryValue(8, Integer.toBinaryString(acc));
+	return sub;
     }
     
     /**
