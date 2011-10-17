@@ -94,9 +94,13 @@ public class ControlUnit {
         DataInputStream in = new DataInputStream(fstream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String strLine;
+        int lineNumber = 0;
         while ((strLine = br.readLine()) != null)   {
-            //System.out.println (strLine);
-            hexInstructions.add(strLine);
+            lineNumber++;
+            if(strLine.length()== 4)
+                hexInstructions.add(strLine);
+            else
+                System.out.println("Invalid instruction at line: " +lineNumber);
         }
          in.close();
          
