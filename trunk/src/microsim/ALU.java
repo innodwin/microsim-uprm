@@ -54,13 +54,15 @@ public class ALU {
         int acc = Long.valueOf(accumulator, 2).intValue();
 	int reg = Long.valueOf(register, 2).intValue();
         
-        if(carry.equals(1))
+        if(carry.equals("1"))
             reg++;
 		
         acc += reg;
 	acc %= 255;
 		
-	return Integer.toBinaryString(acc);
+	Tools t = new Tools();
+        
+	return t.extendBinaryValue(8, Integer.toBinaryString(acc));
     }
     
     public static String sub(String accumulator, String register)
@@ -70,8 +72,10 @@ public class ALU {
 		
         acc -= reg;
 	acc %= 255;
-		
-	return Integer.toBinaryString(acc);
+	
+        Tools t = new Tools();
+        
+	return t.extendBinaryValue(8, Integer.toBinaryString(acc));
     }
     
     public static String xor(String accumulator, String register)
