@@ -71,7 +71,7 @@ public class ControlUnit {
      * 
      */
     public static final String R8 = "111";
-    private int stopFlag = 0;
+    private boolean stop = false;
 
 
     /**
@@ -99,11 +99,9 @@ public class ControlUnit {
         }
          in.close();
          
-         instructionsToMemory();
-         memory.showMemory();
-         registers.setPC("00000000");
-        
+         initialize();
     }
+    
     /**
      * 
      */
@@ -321,7 +319,7 @@ public class ControlUnit {
          * the beginning of every nextStep(), if the flag is set, then next step
          * does not run and the simulator is set back into initialization mode.
          */
-        stopFlag = 1;
+        stop = true;
         
     }
     //TODO: I'm not sure if this stopFlag shit makes sense, but fuck it
@@ -329,14 +327,14 @@ public class ControlUnit {
      * 
      */
     public void nextStep(){
-        if(stopFlag ==  0){
+        if(stop){
             registers.setIR(memory.getWord(registers.getPC()));
             registers.incrementPC();
             executeInstruction(registers.getIR());
         }
-        //else
+        else
             //Pop up window "STOP instruction received, reinitializing simulator"
-            //Reinitialization
+            initialize();
             
     }
     
@@ -347,7 +345,16 @@ public class ControlUnit {
         //TODO: figure out the condition to put inside the while
         do
             nextStep();
-        while(stopFlag==0);
+        while(!stop);
+        //Pop up window "STOP instruction received, reinitializing simulator"
+        initialize();
+        
+    }
+    
+    public void initialize(){
+        instructionsToMemory();
+         memory.showMemory();
+         registers.setPC("00000000");
         
     }
 }
