@@ -1,5 +1,6 @@
 package microsim;
 
+import java.awt.Dialog.ModalExclusionType;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -8,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  * Control Unit class handles the overall operation, execution flow, and branching of the microprocessor.
@@ -22,7 +25,7 @@ public class ControlUnit {
     private File instructionFile; //File object that will hold the text file with instructions
     private boolean stop = false; //Boolean for handling the STOP instruction and stopping execution.
     private IO io; //Used for handling keyboard input
-    
+    private UserInputDialog userInput = new UserInputDialog();
     //Constants for accessing the SR flags
     private static final int ZERO = 0;
     private static final int CARRY = 1; 
@@ -37,7 +40,7 @@ public class ControlUnit {
     private static final String R6 = "101";
     private static final String R7 = "110";
     private static final String R8 = "111";
-
+    private JDialog dialog = new JDialog();
 
 
     /**
@@ -53,9 +56,12 @@ public class ControlUnit {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String strLine;
         int lineNumber = 0; //line counter for reporting what line number an improper isntruction was found
+        dialog.setModal(true);
+        if(instructions != null)
+            
         while ((strLine = br.readLine()) != null)   { //reads from file until finding and empty line
             lineNumber++; //increments line counter
-            if(strLine.length()== 4) //Verifies that the instruction is of proper length (4)
+            if(strLine.length() != 4) //Verifies that the instruction is of proper length (4)
                 System.out.println("Invalid instruction at line: " +lineNumber); //If an instruction is improper, it lets the user know via the console    
             else if(hexInstructions.size() >= 64) //Verifies if the code segment in memory is full
                 System.out.println("64 instructions in memory. Code segment full"); //Lets the user know of the full code segment via the console
@@ -152,36 +158,47 @@ public class ControlUnit {
                 registers.setAccumulator(result);
                 break;
             case 10: //LDA rf
+                System.out.println("Executing LDA RF");
                 ldaRegister(register);
                 break;
             case 11: //STA rf
+                System.out.println("Executing STA");
                 staRegister(register);
                 break;
             case 12: //LDA addr
+                System.out.println("Executing LDA ADDR");
                 ldaAddress(operand);
                 break;
             case 13: //STA addr
+                System.out.println("Executing STA ADDR");
                 staAddress(operand);
                 break;
             case 14: //LDI Immediate
+                System.out.println("Executing LDI IMMEDIATE");
                 ldi(operand);
                 break;
             case 16: //BRZ
+                System.out.println("Executing BRZ");
                 brz();
                 break;
             case 17: //BRC
+                System.out.println("Executing BRC");
                 brc();
                 break;
             case 18: //BRN
+                System.out.println("Executing BRN");
                 brn();
                 break;
             case 19: //BRO
+                System.out.println("Executing BRO");
                 bro();
                 break;
             case 31: //STOP
+                System.out.println("Executing STOP");
                 stop();
                 break;
             case 24: //NOP
+                System.out.println("Executing NOP");
                 nop();
                 break;
             default: System.out.println("Invalid Opcode"); //If the Opcode does not match any of the above, it is incorrect and the user is informed via the console
@@ -213,13 +230,18 @@ public class ControlUnit {
      */
     public void ldaAddress(String address){
         int intAddress = Integer.parseInt(address, 2); //parses address to integer
-        if(intAddress == 250 || intAddress == 251) //if the address is 250 or 251, they are keyboard inputs to be requested
-            //TODO: Read from keyboard and save to accumulator and address
-            io.readChar(); 
-        else{//Else, simply copy memory to accumulator
+        if(intAddress == 250 || intAddress == 251) {//if the address is 250 or 251, they are keyboard inputs to be requested
+            String var = JOptionPane.showInputDialog("enter a value");
+            char input = var.charAt(0);
+            int temp = (int) input;
+            String tmp1 = Integer.toBinaryString(temp);
+            tmp1 = Tools.extendBinaryValue(8, tmp1);
+            //userInput.setModalExclusionType(Dialog.ModalityType.);
+            memory.setByte(address, tmp1);
+        }
+        //simply copy memory to accumulator
             String addressContent = memory.getByte(address); 
             registers.setAccumulator(addressContent);
-        }
     }
     
     /**

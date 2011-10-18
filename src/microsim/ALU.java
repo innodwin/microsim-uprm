@@ -24,6 +24,7 @@ public class ALU {
      */
     public static String and(String accumulator, String register)
     {
+        System.out.println("Executing AND");
         int i = 0;
 	String and = "";
 	
@@ -48,6 +49,7 @@ public class ALU {
      */
     public static String or(String accumulator, String register)
     {
+        System.out.println("Executing OR");
         int i = 0;
         String or = "";
         
@@ -73,7 +75,7 @@ public class ALU {
      */
     public static String addc(String accumulator, String register)
     {
-         
+        System.out.println("Executing ADDC");
         int acc = Tools.signedBinToDec(accumulator);
         int reg = Tools.signedBinToDec(register);
         int result = 0;
@@ -113,7 +115,7 @@ public class ALU {
 
         }else{
               
-              if(ControlUnit.registers.getSR(CARRY,"1"){
+              if(ControlUnit.registers.getSR(CARRY).equals("1")){
                       result++;
               }
               
@@ -125,7 +127,7 @@ public class ALU {
                       ControlUnit.registers.setSR(NEGATIVE,"1");
               }
               
-              sum = Tools.extendedBinaryValue(8,Integer.toBinaryString(result));
+              sum = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
         }
         
         return sum;
@@ -140,6 +142,7 @@ public class ALU {
      */
     public static String sub(String accumulator, String register)
     {
+        System.out.println("Executing SUB");
         int acc = Tools.signedBinToDec(accumulator);
         int reg = Tools.signedBinToDec(register);
         int result=0;
@@ -161,7 +164,7 @@ public class ALU {
                   ControlUnit.registers.setSR(ZERO, "1");
             }
             
-            sub = Tools.extendBinaryValue(Integer.toBinaryString(result));
+            sub = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
         
         }
         
@@ -177,6 +180,7 @@ public class ALU {
      */
     public static String xor(String accumulator, String register)
     {
+        System.out.println("Executing XOR");
         int i = 0;
         String xor = "";
 	
@@ -202,6 +206,7 @@ public class ALU {
      */
     public static String not(String accumulator)
     {
+        System.out.println("Executing NOT");
         int i = 0;
 	String not = "";
 		
@@ -225,6 +230,7 @@ public class ALU {
      */
     public static String neg(String accumulator)
     {
+        System.out.println("Executing NEG");
         int i = 0;
         String neg = "";
 		
@@ -245,7 +251,7 @@ public class ALU {
             ControlUnit.registers.setSR(CARRY, "1");
             ControlUnit.registers.setSR(ZERO, "1");
             ControlUnit.registers.setSR(NEGATIVE, "1");
-            neg = Tools.ByteSizedBinValue(intNeg);
+            neg = Tools.byteSizedBinValue(Integer.toBinaryString(intNeg));
             
         }else{
             
@@ -254,7 +260,7 @@ public class ALU {
                   neg = Tools.byteSizedBinValue(Integer.toBinaryString(intNeg));
                   ControlUnit.registers.setSR(NEGATIVE, "1");
             }else
-                  neg = Tools.extendedBinaryValue(Integer.toBinaryString(intNeg);
+                  neg = Tools.extendBinaryValue(8,Integer.toBinaryString(intNeg));
                   
         }
 		
@@ -270,11 +276,12 @@ public class ALU {
      */
     public static String rlc(String accumulator)
     {
+        System.out.println("Executing RLC");
         String oldCarry = ControlUnit.registers.getSR(CARRY);
         String newCarry = ""+accumulator.charAt(0);
         ControlUnit.registers.setSR(CARRY, newCarry);
         accumulator = accumulator.substring(1, 8)+oldCarry;
-        intNum = signedBintoDec(accumulator);
+        int intNum = Tools.signedBinToDec(accumulator);
         if(Integer.signum(intNum)==-1)
               ControlUnit.registers.setSR(NEGATIVE,"1");
         else if(intNum==0)
@@ -292,11 +299,13 @@ public class ALU {
      */
     public static String rrc(String accumulator)
     {
+        System.out.println("Executing RRC");
         String oldCarry = ControlUnit.registers.getSR(CARRY);
         String newCarry = ""+accumulator.charAt(7);
         ControlUnit.registers.setSR(CARRY, newCarry);
         accumulator = oldCarry+accumulator.substring(0, 7);
-        
+        int intNum = Tools.signedBinToDec(accumulator);
+
         if(Integer.signum(intNum)==-1)
               ControlUnit.registers.setSR(NEGATIVE,"1");
         else if(intNum==0)
@@ -314,6 +323,7 @@ public class ALU {
      */
     public static String mul(String accumulator, String register)
     {
+       System.out.println("Executing MUL");
        String op1 = accumulator.substring(4, 8);
        String op2 = register.substring(4,8);
        Tools t = new Tools();

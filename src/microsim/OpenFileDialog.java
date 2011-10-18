@@ -24,6 +24,7 @@ public class OpenFileDialog extends javax.swing.JFrame {
     /** Creates new form OpenFileDialog */
     public OpenFileDialog() {
         initComponents();
+        this.setVisible(true);
     }
 
     /** This method is called from within the constructor to
