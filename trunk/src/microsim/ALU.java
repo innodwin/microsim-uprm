@@ -75,18 +75,42 @@ public class ALU {
     {
          
         int acc = Tools.signedBinToDec(accumulator);
-	int reg = Tools.signedBinToDec(register);
+        int reg = Tools.signedBinToDec(register);
         int result = 0;
         String sum = "";
         result = acc + reg;
         
-        if(result==-256||result==256){
+        if(result==-255||result==255){
             
-            ControlUnit.registers.setSR(OVERFLOW, "1");
-            if(ControlUnit.registers.getSR(CARRY).equals("1"))
-                    result++;
-            sum = Tools.extendBinaryValue(8, Integer.toBinaryString(result));
+            if(ControlUnit.registers.getSR(CARRY).equals("1")){
+                        result++;
+                        ControlUnit.registers.setSR(OVERFLOW, "1");
+                        ControlUnit.registers.setSR(ZERO, "1");
+                        sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
+            }else{
+                        sum = Tools.extendBinaryValue(8, Integer.toBinaryString(result));
+            }      
             
+            if(Integer.signum(result)==-1){
+                    ControlUnit.registers.setSR(NEGATIVE,"1");
+            }      
+            
+        }if(result==-256||result==256){
+            
+            ControlUnit.registers.setSR(OVERFLOW, "1");          
+            
+            if(Integer.signum(result)==-1){
+                    ControlUnit.registers.setSR(NEGATIVE,"1");
+            }
+            
+            if(ControlUnit.registers.getSR(CARRY).equals("1")){
+                        result++;
+                        ControlUnit.registers.setSR(ZERO, "1");
+                        sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
+            }else{
+                        sum = Tools.extendBinaryValue(8, Integer.toBinaryString(result));
+            }
+
         }else if(Integer.signum(result)==-1){
             
             ControlUnit.registers.setSR(NEGATIVE, "1");
