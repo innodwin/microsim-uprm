@@ -80,8 +80,9 @@ public class Tools {
       
       int intNum = 0;
       
-      if(binNum.charAt(0)=='1')
+      if(binNum.charAt(0)=='1'&&binNum.length()==8){
           intNum = Integer.parseInt(binNum.substring(1, 8),2)-128;
+      }
       else
           intNum = Integer.parseInt(binNum,2);
       
