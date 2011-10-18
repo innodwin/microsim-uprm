@@ -82,50 +82,53 @@ public class ALU {
         
         if(result==-255||result==255){
             
-            if(ControlUnit.registers.getSR(CARRY).equals("1")){
+              if(ControlUnit.registers.getSR(CARRY).equals("1")){
                         result++;
                         ControlUnit.registers.setSR(OVERFLOW, "1");
                         ControlUnit.registers.setSR(ZERO, "1");
-                        sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
-            }else{
-                        sum = Tools.extendBinaryValue(8, Integer.toBinaryString(result));
-            }      
+              }
             
-            if(Integer.signum(result)==-1){
+              if(Integer.signum(result)==-1){
                     ControlUnit.registers.setSR(NEGATIVE,"1");
-            }      
+              }
             
-        }if(result==-256||result==256){
+              sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
             
-            ControlUnit.registers.setSR(OVERFLOW, "1");          
+        }else if(result==-256||result==256){
             
-            if(Integer.signum(result)==-1){
-                    ControlUnit.registers.setSR(NEGATIVE,"1");
-            }
-            
-            if(ControlUnit.registers.getSR(CARRY).equals("1")){
-                        result++;
-                        ControlUnit.registers.setSR(ZERO, "1");
-                        sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
-            }else{
-                        sum = Tools.extendBinaryValue(8, Integer.toBinaryString(result));
-            }
+              ControlUnit.registers.setSR(OVERFLOW, "1");
 
-        }else if(Integer.signum(result)==-1){
+              if(ControlUnit.registers.getSR(CARRY).equals("1")){
+                        result++;
+              }else{
+                        ControlUnit.registers.setSR(CARRY,"1");
+                        ControlUnit.registers.setSR(ZERO, "1");
+              }
             
-            ControlUnit.registers.setSR(NEGATIVE, "1");
-            if(ControlUnit.registers.getSR(CARRY).equals("1"))
-                    result++;
-            sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
-            
+              if(Integer.signum(result)==-1){
+                    ControlUnit.registers.setSR(NEGATIVE,"1");
+              }
+
+              sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
+
         }else{
-            
-            if(ControlUnit.registers.getSR(CARRY).equals("1"))
-                    result++;
-            sum = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
+              
+              if(ControlUnit.registers.getSR(CARRY,"1"){
+                      result++;
+              }
+              
+              if(result==0){
+                      ControlUnit.registers.setSR(ZERO,"1");
+              }
+              
+              if(Integer.signum(result)==-1){
+                      ControlUnit.registers.setSR(NEGATIVE,"1");
+              }
+              
+              sum = Tools.extendedBinaryValue(8,Integer.toBinaryString(result));
         }
         
-	return sum;
+        return sum;
     }
     
     /**
@@ -138,21 +141,28 @@ public class ALU {
     public static String sub(String accumulator, String register)
     {
         int acc = Tools.signedBinToDec(accumulator);
-	int reg = Tools.signedBinToDec(register);
+        int reg = Tools.signedBinToDec(register);
         int result=0;
         String sub = "";
         result = acc - reg;
-        if(result==256||result==-256){
+        if(result==-256){
             
             ControlUnit.registers.setSR(OVERFLOW, "1");
-            sub = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
-            
-        }else if(Integer.signum(result)==-1){
+            ControlUnit.registers.setSR(CARRY, "1");
+            ControlUnit.registers.setSR(ZERO, "1");
             ControlUnit.registers.setSR(NEGATIVE, "1");
             sub = Tools.byteSizedBinValue(Integer.toBinaryString(result));
             
         }else{
-            sub = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
+            
+            if(Integer.signum(result)==-1){
+                  ControlUnit.registers.setSR(NEGATIVE, "1");
+            }else if(result==0){
+                  ControlUnit.registers.setSR(ZERO, "1");
+            }
+            
+            sub = Tools.extendBinaryValue(Integer.toBinaryString(result));
+        
         }
         
 	return sub;
@@ -216,28 +226,32 @@ public class ALU {
     public static String neg(String accumulator)
     {
         int i = 0;
-	String neg = "";
+        String neg = "";
 		
-	while(i > 8){
+        while(i > 8){
             if(accumulator.charAt(i) == '0')
                 neg.concat("1");
             else
                 neg.concat("0");
             i++;
-	}
+        }
         
-        Tools t = new Tools();
-        int intNeg = Integer.parseInt(neg, 2);
+        int intNeg = Tools.signedBinToDec(neg);
         
-        if(intNeg==256){
-            intNeg=0;
-            neg = Integer.toBinaryString(intNeg);
-            neg = t.extendBinaryValue(8, neg);
-            ControlUnit.registers.setSR(OVERFLOW, "1");
-        }else{
+        if(intNeg==255){
             intNeg++;
-            neg = Integer.toBinaryString(intNeg);
-            neg = t.extendBinaryValue(8, neg);
+            ControlUnit.registers.setSR(OVERFLOW, "1");
+            ControlUnit.registers.setSR(CARRY, "1");
+            ControlUnit.registers.setSR(ZERO, "1");
+            neg = Tools.ByteSizedBinValue(intNeg);
+        }else{
+            
+            intNeg++;
+            neg = Tools.ByteSizedBinValue(Integer.toBinaryString(intNeg));
+            
+            if(neg.chartAt(0).equals("1")){
+                  ControlUnit.registers.setSR(NEGATIVE, "1");
+            }
         }
 		
 	return neg;
