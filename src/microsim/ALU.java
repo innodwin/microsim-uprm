@@ -241,7 +241,7 @@ public class ALU {
                 neg.concat("0");
             i++;
         }
-        
+        System.err.println(neg);
         int intNeg = Tools.signedBinToDec(neg);
         
         if(intNeg==255){
