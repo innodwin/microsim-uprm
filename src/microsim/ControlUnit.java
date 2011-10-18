@@ -98,61 +98,71 @@ public class ControlUnit {
         String accumulatorValue; //String that will hold the accumulator value when needed
         String registerValue; //String that will hold the register value when needed
         String result; //String to hold results of operations
-        
+        System.out.print("This is executeInstruction Accum: " + registers.getAccumulator());
         int intopcode = Integer.parseInt(opcode, 2); //Parses the opcode into a digit in order to use it in the following Switch
         switch(intopcode){
             case 0: //AND
+                System.out.println("Executing AND");
                 registerValue = registers.read(register);
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.and(accumulatorValue, registerValue);
                 registers.setAccumulator(result);
                 break;
             case 1: //OR
+                System.out.println("Executing OR");
                 registerValue = registers.read(register);
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.or(accumulatorValue, registerValue);
                 registers.setAccumulator(result);
                 break;
             case 2: //XOR
+                System.out.println("Executing XOR");
                 registerValue = registers.read(register);
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.xor(accumulatorValue, registerValue);
                 registers.setAccumulator(result);
                 break;
             case 3: //ADDC
+                System.out.println("Executing ADDC");
                 registerValue = registers.read(register);
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.addc(accumulatorValue, registerValue);
                 registers.setAccumulator(result);
                 break;
             case 4: //SUB
+                System.out.println("Executing SUB");
                 registerValue = registers.read(register);
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.sub(accumulatorValue, registerValue);
                 registers.setAccumulator(result);
                 break;
             case 5: //MUL
+                System.out.println("Executing MUL");
                 registerValue = registers.read(register);
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.mul(accumulatorValue, registerValue);
                 registers.setAccumulator(result);
                 break;
             case 6: //NEG
+                System.out.println("Executing NEG!!");
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.neg(accumulatorValue);
                 registers.setAccumulator(result);
                 break;
             case 7: //NOT
+                System.out.println("Executing NOT");
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.not(accumulatorValue);
                 registers.setAccumulator(result);
                 break;
             case 8: //RLC
+                System.out.println("Executing RLC");
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.rlc(accumulatorValue);
                 registers.setAccumulator(result);
                 break;
             case 9: //RRC
+                System.out.println("Executing RRC");
                 accumulatorValue = registers.getAccumulator();
                 result = ALU.rrc(accumulatorValue);
                 registers.setAccumulator(result);
