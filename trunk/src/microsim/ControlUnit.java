@@ -80,7 +80,6 @@ public class ControlUnit {
         int size = hexInstructions.size(); //Gets the total number of instructions to be inserted into memory
         for(int i=0;i<size;i++){
            String binInstruction = InstructionParser.parse(hexInstructions.get(i)); //Parses instruction from hexadecimal to binary
-           //TODO:Check if toBinaryString is generating leading zeroes correctly
            String address = Integer.toBinaryString(i*2); //multiplies address by two to get addresses in increments of two bytes (Word)
            address = Tools.extendBinaryValue(8, address); //extends address to 8 bits
            memory.setWord(address, binInstruction); //Sets the instruction into memory

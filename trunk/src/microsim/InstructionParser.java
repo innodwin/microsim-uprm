@@ -21,7 +21,6 @@ public class InstructionParser {
      * @return The instruction in a binary String
      */
     public static String parse(String instruction){
-        //TODO: Check if instruction length = 4
         int decimal = Integer.parseInt(instruction, 16); //Converts instruction to int
         String binary = Integer.toBinaryString(decimal); //Converts int instruction to binary String
         binary = Tools.extendBinaryValue(16, binary);
