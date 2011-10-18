@@ -230,18 +230,18 @@ public class ALU {
      */
     public static String neg(String accumulator)
     {
-        System.out.println("Executing NEG");
+        System.out.println(accumulator+"!!!!!!!!!!!!!");
         int i = 0;
         String neg = "";
 		
-        while(i > 8){
+        while(i < 8){
             if(accumulator.charAt(i) == '0')
-                neg.concat("1");
+                neg+="1";
             else
-                neg.concat("0");
+                neg+="0";
             i++;
         }
-        System.err.println(neg);
+        
         int intNeg = Tools.signedBinToDec(neg);
         
         if(intNeg==255){
@@ -263,7 +263,7 @@ public class ALU {
                   neg = Tools.extendBinaryValue(8,Integer.toBinaryString(intNeg));
                   
         }
-		
+	System.out.println("This is neg: " + neg);	
 	return neg;
     }
     
