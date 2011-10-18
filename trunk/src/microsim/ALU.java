@@ -239,19 +239,23 @@ public class ALU {
         int intNeg = Tools.signedBinToDec(neg);
         
         if(intNeg==255){
+            
             intNeg++;
             ControlUnit.registers.setSR(OVERFLOW, "1");
             ControlUnit.registers.setSR(CARRY, "1");
             ControlUnit.registers.setSR(ZERO, "1");
+            ControlUnit.registers.setSR(NEGATIVE, "1");
             neg = Tools.ByteSizedBinValue(intNeg);
+            
         }else{
             
             intNeg++;
-            neg = Tools.ByteSizedBinValue(Integer.toBinaryString(intNeg));
-            
-            if(neg.chartAt(0).equals("1")){
+            if(Integer.signum(intNeg)==-1){
+                  neg = Tools.byteSizedBinValue(Integer.toBinaryString(intNeg));
                   ControlUnit.registers.setSR(NEGATIVE, "1");
-            }
+            }else
+                  neg = Tools.extendedBinaryValue(Integer.toBinaryString(intNeg);
+                  
         }
 		
 	return neg;
@@ -270,6 +274,11 @@ public class ALU {
         String newCarry = ""+accumulator.charAt(0);
         ControlUnit.registers.setSR(CARRY, newCarry);
         accumulator = accumulator.substring(1, 8)+oldCarry;
+        intNum = signedBintoDec(accumulator);
+        if(Integer.signum(intNum)==-1)
+              ControlUnit.registers.setSR(NEGATIVE,"1");
+        else if(intNum==0)
+              ControlUnit.registers.setSR(ZERO,"1");
         
         return accumulator;
     }
@@ -287,6 +296,11 @@ public class ALU {
         String newCarry = ""+accumulator.charAt(7);
         ControlUnit.registers.setSR(CARRY, newCarry);
         accumulator = oldCarry+accumulator.substring(0, 7);
+        
+        if(Integer.signum(intNum)==-1)
+              ControlUnit.registers.setSR(NEGATIVE,"1");
+        else if(intNum==0)
+              ControlUnit.registers.setSR(ZERO,"1");
         
         return accumulator;
     }
@@ -306,7 +320,8 @@ public class ALU {
        int tmp1 = t.binToDec(op1);
        int tmp2 = t.binToDec(op2);
        int result = tmp1*tmp2;
-       System.out.println("op1: "+tmp1 + " op2: " + tmp2 + "result: " + result);
+       if(result==0)
+             ControlUnit.registers.setSR(ZERO,"1");
        String formattedResult = t.extendBinaryValue(8, Integer.toBinaryString(result));
        return formattedResult;
     }
