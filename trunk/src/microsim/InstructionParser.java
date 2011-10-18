@@ -24,10 +24,7 @@ public class InstructionParser {
         //TODO: Check if instruction length = 4
         int decimal = Integer.parseInt(instruction, 16); //Converts instruction to int
         String binary = Integer.toBinaryString(decimal); //Converts int instruction to binary String
-        int length = binary.length(); //grabs the length of the binary instruction
-            if(length != 16) //checks  if the instruction is 16 bits long
-                for(int i = length; i < 16; i++) //for every missing bit
-                    binary = "0" + binary; //add a leading zero to the String
+        binary = Tools.extendBinaryValue(16, binary);
         return binary;
     }
     
