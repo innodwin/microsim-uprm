@@ -7,6 +7,7 @@
  */
 package microsim;
 
+import java.awt.Dialog.ModalExclusionType;
 import org.jdesktop.application.Action;
 
 /**
@@ -16,12 +17,14 @@ import org.jdesktop.application.Action;
 public class UserInputDialog extends javax.swing.JFrame {
 
     private char input = 0;
+    private boolean inputReceived = false;
     private String inputHEX = "";
     private String inputBin ="";
     
     /** Creates new form UserInputDialog */
     public UserInputDialog() {
         initComponents();
+        this.setModalExclusionType(ModalExclusionType.TOOLKIT_EXCLUDE);
     }
 
     /** This method is called from within the constructor to
@@ -49,8 +52,10 @@ public class UserInputDialog extends javax.swing.JFrame {
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
+        jTextField1.setMaximumSize(new java.awt.Dimension(1, 1));
+        jTextField1.setMinimumSize(new java.awt.Dimension(1, 1));
         jTextField1.setName("jTextField1"); // NOI18N
-        jTextField1.setSize(new java.awt.Dimension(1, 28));
+        jTextField1.setSize(new java.awt.Dimension(1, 1));
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(microsim.MicrosimApp.class).getContext().getActionMap(UserInputDialog.class, this);
         jButton1.setAction(actionMap.get("ok")); // NOI18N
@@ -76,7 +81,7 @@ public class UserInputDialog extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jLabel1)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(layout.createSequentialGroup()
@@ -135,7 +140,7 @@ public class UserInputDialog extends javax.swing.JFrame {
         inputHEX = Integer.toHexString(temp);
         inputBin = Integer.toBinaryString(temp);
         this.setVisible(false);
-        System.out.println(input);
+        this.inputReceived = true;
     }
     
       /**
@@ -160,6 +165,10 @@ public class UserInputDialog extends javax.swing.JFrame {
      */
     public String getInputBin(){
         return inputBin;
+    }
+    
+    public void waitForInput(){
+        while(!inputReceived){};
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

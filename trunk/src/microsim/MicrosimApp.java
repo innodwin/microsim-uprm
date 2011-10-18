@@ -44,10 +44,6 @@ public class MicrosimApp extends SingleFrameApplication {
      * Main method launching the application.
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        //launch(MicrosimApp.class, args);
-        ControlUnit cu = new ControlUnit(new File("test.txt"));
-        int num = Integer.parseInt("FF", 16);
-        String bin = Integer.toBinaryString(num);
-        //System.out.println(bin);
+        launch(MicrosimApp.class, args);
     }
 }
