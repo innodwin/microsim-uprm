@@ -32,6 +32,7 @@ public class ControlUnit {
     private static final String R7 = "111";
     private JDialog dialog = new JDialog();
     private MicrosimView mSimView;
+    private MessageBox popUp = new MessageBox();
 
     /**
      * Constructor creates the Control Unit, parses the instructions from input file into memory, and initializes the microprocessor.
@@ -332,9 +333,7 @@ public class ControlUnit {
      * Native Instruction: STOP - Stops execution
      */
     public void stopOperaton(){
-        stopFlag = true;
-        System.out.println("asdf tried to step stop to true");
-        
+        stopFlag = true;        
     }
     
     /**
@@ -352,6 +351,8 @@ public class ControlUnit {
         }
         else{
             initialize();
+            popUp.setErrorMessage("STOP instruction received, reinitializing simulator");
+            popUp.showErrorDialog();
             System.out.println("STOP instruction received, reinitializing simulator"); //TODO:Implement this message in a popup window
         }
     }
@@ -365,6 +366,8 @@ public class ControlUnit {
         }      
         while(stopFlag == false);
         if(stopFlag){
+            popUp.setErrorMessage("STOP instruction received, reinitializing simulator");
+            popUp.showErrorDialog();
         System.out.println("STOP instruction received, reinitializing simulator"); //TODO: Implement this message in a popup window
         }
     }
