@@ -24,7 +24,6 @@ public class ALU {
      */
     public static String and(String accumulator, String register)
     {
-        System.out.println("Executing AND");
         int i = 0;
 	String and = "";
 	
@@ -36,6 +35,21 @@ public class ALU {
 			
             i++;
 	}
+        
+        ControlUnit.registers.setSR(CARRY, "0");
+        ControlUnit.registers.setSR(OVERFLOW, "0");
+        
+        if(Integer.parseInt(and, 2)==0){
+            ControlUnit.registers.setSR(ZERO, "1");
+        }else{
+            ControlUnit.registers.setSR(ZERO, "0");
+        }
+	
+        if(and.charAt(0)=='1'){
+            ControlUnit.registers.setSR(NEGATIVE, "1");
+        }else{
+            ControlUnit.registers.setSR(NEGATIVE, "0");
+        }
 	
         return and;
     }
@@ -49,7 +63,6 @@ public class ALU {
      */
     public static String or(String accumulator, String register)
     {
-        System.out.println("Executing OR");
         int i = 0;
         String or = "";
         
@@ -61,7 +74,22 @@ public class ALU {
             
             i++;
 	}
+        
+        ControlUnit.registers.setSR(CARRY, "0");
+        ControlUnit.registers.setSR(OVERFLOW, "0");
+        
+        if(Integer.parseInt(or, 2)==0){
+            ControlUnit.registers.setSR(ZERO, "1");
+        }else{
+            ControlUnit.registers.setSR(ZERO, "0");
+        }
 	
+        if(or.charAt(0)=='1'){
+            ControlUnit.registers.setSR(NEGATIVE, "1");
+        }else{
+            ControlUnit.registers.setSR(NEGATIVE, "0");
+        }
+        
         return or;
     }
     
@@ -75,13 +103,63 @@ public class ALU {
      */
     public static String addc(String accumulator, String register)
     {
-        System.out.println("Executing ADDC");
-        int acc = Tools.signedBinToDec(accumulator);
-        int reg = Tools.signedBinToDec(register);
-        int result = 0;
+        //int acc = Tools.signedBinToDec(accumulator);
+        //int reg = Tools.signedBinToDec(register);
+        //int result = 0;
         String sum = "";
-        result = acc + reg;
+        //result = acc + reg;
+//NEW        
+        int i=7;
         
+        while (i >= 0){
+            if(accumulator.charAt(i) == '1' && register.charAt(i) == '1' && ControlUnit.registers.getSR(CARRY).equals("1")){
+                sum = "1"+sum;
+                ControlUnit.registers.setSR(CARRY, "1");
+            }else if(accumulator.charAt(i) == '1' && register.charAt(i) == '0'&& ControlUnit.registers.getSR(CARRY).equals("1")){
+                sum = "0"+sum;
+                ControlUnit.registers.setSR(CARRY, "1");
+            }else if(accumulator.charAt(i) == '0' && register.charAt(i) == '1'&& ControlUnit.registers.getSR(CARRY).equals("1")){
+                sum = "0"+sum;
+                ControlUnit.registers.setSR(CARRY, "1");
+            }else if(accumulator.charAt(i) == '0' && register.charAt(i) == '0'&& ControlUnit.registers.getSR(CARRY).equals("1")){
+                sum = "1"+sum;
+                ControlUnit.registers.setSR(CARRY, "0");
+            }else if(accumulator.charAt(i) == '1' && register.charAt(i) == '1'&& ControlUnit.registers.getSR(CARRY).equals("0")){
+                sum = "0"+sum;
+                ControlUnit.registers.setSR(CARRY, "1");
+            }else if(accumulator.charAt(i) == '1' && register.charAt(i) == '0'&& ControlUnit.registers.getSR(CARRY).equals("0")){
+                sum = "1"+sum;
+                ControlUnit.registers.setSR(CARRY, "0");
+            }else if(accumulator.charAt(i) == '0' && register.charAt(i) == '1'&& ControlUnit.registers.getSR(CARRY).equals("0")){
+                sum = "1"+sum;
+                ControlUnit.registers.setSR(CARRY, "0");
+            }else if(accumulator.charAt(i) == '0' && register.charAt(i) == '0'&& ControlUnit.registers.getSR(CARRY).equals("0")){
+                sum = "0"+sum;
+                ControlUnit.registers.setSR(CARRY, "0");
+            }
+            
+            i--;
+	}
+        
+        if(sum.charAt(0)=='1'){
+            ControlUnit.registers.setSR(NEGATIVE, "1");
+        }else{
+            ControlUnit.registers.setSR(NEGATIVE, "0");
+        }
+        
+        if(Integer.parseInt(sum, 2)==0){
+            ControlUnit.registers.setSR(ZERO,"1");
+        }else{
+            ControlUnit.registers.setSR(ZERO, "0");
+        }
+        
+        if(Integer.parseInt(sum, 2)==0 && ControlUnit.registers.getSR(CARRY).equals("1")){
+            ControlUnit.registers.setSR(OVERFLOW, "1");
+        }else{
+            ControlUnit.registers.setSR(OVERFLOW, "1");
+        }
+//NEW        
+        /*
         if(result==-255||result==255){
             
               if(ControlUnit.registers.getSR(CARRY).equals("1")){
@@ -129,7 +207,7 @@ public class ALU {
               
               sum = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
         }
-        
+        */
         return sum;
     }
     
@@ -142,7 +220,6 @@ public class ALU {
      */
     public static String sub(String accumulator, String register)
     {
-        System.out.println("Executing SUB");
         int acc = Tools.signedBinToDec(accumulator);
         int reg = Tools.signedBinToDec(register);
         int result=0;
@@ -180,7 +257,6 @@ public class ALU {
      */
     public static String xor(String accumulator, String register)
     {
-        System.out.println("Executing XOR");
         int i = 0;
         String xor = "";
 	
@@ -194,6 +270,21 @@ public class ALU {
 			
             i++;
 	}
+        
+        ControlUnit.registers.setSR(CARRY, "0");
+        ControlUnit.registers.setSR(OVERFLOW, "0");
+        
+        if(Integer.parseInt(xor, 2)==0){
+            ControlUnit.registers.setSR(ZERO, "1");
+        }else{
+            ControlUnit.registers.setSR(ZERO, "0");
+        }
+	
+        if(xor.charAt(0)=='1'){
+            ControlUnit.registers.setSR(NEGATIVE, "1");
+        }else{
+            ControlUnit.registers.setSR(NEGATIVE, "0");
+        }
 	
         return xor;
     }
@@ -206,7 +297,6 @@ public class ALU {
      */
     public static String not(String accumulator)
     {
-        System.out.println("Executing NOT");
         int i = 0;
 	String not = "";
 		
@@ -217,6 +307,21 @@ public class ALU {
                 not.concat("0");
             i++;
 	}
+        
+        ControlUnit.registers.setSR(CARRY, "0");
+        ControlUnit.registers.setSR(OVERFLOW, "0");
+        
+        if(Integer.parseInt(not, 2)==0){
+            ControlUnit.registers.setSR(ZERO, "1");
+        }else{
+            ControlUnit.registers.setSR(ZERO, "0");
+        }
+	
+        if(not.charAt(0)=='1'){
+            ControlUnit.registers.setSR(NEGATIVE, "1");
+        }else{
+            ControlUnit.registers.setSR(NEGATIVE, "0");
+        }
 		
 	return not;
     }
@@ -230,7 +335,6 @@ public class ALU {
      */
     public static String neg(String accumulator)
     {
-        System.out.println(accumulator+"!!!!!!!!!!!!!");
         int i = 0;
         String neg = "";
 		
@@ -263,7 +367,7 @@ public class ALU {
                   neg = Tools.extendBinaryValue(8,Integer.toBinaryString(intNeg));
                   
         }
-	System.out.println("This is neg: " + neg);	
+        
 	return neg;
     }
     
@@ -276,16 +380,24 @@ public class ALU {
      */
     public static String rlc(String accumulator)
     {
-        System.out.println("Executing RLC");
         String oldCarry = ControlUnit.registers.getSR(CARRY);
         String newCarry = ""+accumulator.charAt(0);
         ControlUnit.registers.setSR(CARRY, newCarry);
         accumulator = accumulator.substring(1, 8)+oldCarry;
-        int intNum = Tools.signedBinToDec(accumulator);
-        if(Integer.signum(intNum)==-1)
-              ControlUnit.registers.setSR(NEGATIVE,"1");
-        else if(intNum==0)
-              ControlUnit.registers.setSR(ZERO,"1");
+        
+        ControlUnit.registers.setSR(OVERFLOW, "0");
+        
+        if(Integer.parseInt(accumulator, 2)==0){
+            ControlUnit.registers.setSR(ZERO, "1");
+        }else{
+            ControlUnit.registers.setSR(ZERO, "1");
+        }
+	
+        if(accumulator.charAt(0)=='1'){
+            ControlUnit.registers.setSR(NEGATIVE, "0");
+        }else{
+            ControlUnit.registers.setSR(NEGATIVE, "0");
+        }
         
         return accumulator;
     }
@@ -299,17 +411,24 @@ public class ALU {
      */
     public static String rrc(String accumulator)
     {
-        System.out.println("Executing RRC");
         String oldCarry = ControlUnit.registers.getSR(CARRY);
         String newCarry = ""+accumulator.charAt(7);
         ControlUnit.registers.setSR(CARRY, newCarry);
         accumulator = oldCarry+accumulator.substring(0, 7);
-        int intNum = Tools.signedBinToDec(accumulator);
 
-        if(Integer.signum(intNum)==-1)
-              ControlUnit.registers.setSR(NEGATIVE,"1");
-        else if(intNum==0)
-              ControlUnit.registers.setSR(ZERO,"1");
+        ControlUnit.registers.setSR(OVERFLOW, "0");
+        
+        if(Integer.parseInt(accumulator, 2)==0){
+            ControlUnit.registers.setSR(ZERO, "1");
+        }else{
+            ControlUnit.registers.setSR(ZERO, "0");
+        }
+	
+        if(accumulator.charAt(0)=='1'){
+            ControlUnit.registers.setSR(NEGATIVE, "1");
+        }else{
+            ControlUnit.registers.setSR(NEGATIVE, "0");
+        }
         
         return accumulator;
     }
@@ -323,16 +442,28 @@ public class ALU {
      */
     public static String mul(String accumulator, String register)
     {
-       System.out.println("Executing MUL");
        String op1 = accumulator.substring(4, 8);
        String op2 = register.substring(4,8);
-       Tools t = new Tools();
-       int tmp1 = t.binToDec(op1);
-       int tmp2 = t.binToDec(op2);
+       int tmp1 = Integer.parseInt(op1, 2);
+       int tmp2 = Integer.parseInt(op2, 2);
        int result = tmp1*tmp2;
-       if(result==0)
-             ControlUnit.registers.setSR(ZERO,"1");
-       String formattedResult = t.extendBinaryValue(8, Integer.toBinaryString(result));
-       return formattedResult;
+       String mul = Tools.extendBinaryValue(8, Integer.toBinaryString(result));
+       
+       ControlUnit.registers.setSR(OVERFLOW, "1");
+       ControlUnit.registers.setSR(CARRY, "1");
+       
+       if(mul.charAt(0)=='1'){
+           ControlUnit.registers.setSR(NEGATIVE, "1");
+       }else{
+           ControlUnit.registers.setSR(NEGATIVE, "0");
+       }
+       
+       if(Integer.parseInt(mul, 2)==0){
+           ControlUnit.registers.setSR(ZERO, "1");
+       }else{
+           ControlUnit.registers.setSR(ZERO, "0");
+       }
+       
+       return mul;
     }
 }
