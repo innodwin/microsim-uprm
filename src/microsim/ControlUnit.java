@@ -348,6 +348,7 @@ public class ControlUnit {
             registers.setIR(memory.getWord(registers.getPC())); //Gets the PC, uses it as an address to get the instruction Word from memory, and sets it as the next PC
             registers.incrementPC();
             executeInstruction();
+            this.mSimView.updateGUI(registers, memory);
         }
         else{
             initialize();
