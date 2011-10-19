@@ -21,7 +21,7 @@ public class ControlUnit {
     protected static Memory memory = new Memory(); //memory object to be used in the microprocessor
     protected static Registers registers = new Registers(); //register object to be used in the microprocessor
     private ArrayList<String> hexInstructions = new ArrayList<String>(64); //ArrayList to hold the original hexadecimal instructions
-    private boolean stop = false; //Boolean for handling the STOP instruction and stopping execution.
+    private boolean stopFlag = false; //Boolean for handling the STOP instruction and stopping execution.
     private IO io; //Used for handling keyboard input
     //Constants for accessing the SR flags
     private static final int ZERO = 0;
@@ -330,7 +330,8 @@ public class ControlUnit {
      * Native Instruction: STOP - Stops execution
      */
     public void stop(){
-        stop = true;
+        stopFlag = true;
+        System.out.println("asdf tried to step stop to true");
         
     }
     
@@ -340,10 +341,13 @@ public class ControlUnit {
      * If the stop instruction was executed previously, it reinitializes the simulator.
      */
     public void nextStep(){
-        if(stop == false){ //Checks if the previous instruction was STOP
+        if(stopFlag == false){ //Checks if the previous instruction was STOP
+            System.out.println("inside next step, stop is false and this is printing");
             registers.setIR(memory.getWord(registers.getPC())); //Gets the PC, uses it as an address to get the instruction Word from memory, and sets it as the next PC
             registers.incrementPC();
             executeInstruction();
+            if(stopFlag==true)
+                System.out.println("inside next step, stop is true and this is printing.");
         }
         else{
             initialize();
@@ -355,10 +359,11 @@ public class ControlUnit {
      * Operates the emulator in Run mode. All the instructions in memory are run sequentially and without interruption (except for a keyboard prompt if present)
      */
     public void run(){
-        do
+        do{
             nextStep();
-        while(stop == false);
-        if(stop){
+        }      
+        while(stopFlag == false);
+        if(stopFlag){
         System.out.println("STOP instruction received, reinitializing simulator"); //TODO: Implement this message in a popup window
         }
     }
@@ -368,7 +373,7 @@ public class ControlUnit {
     private void initialize(){
         instructionsToMemory();
         registers.setPC("00000000");
-        stop = false;
+        stopFlag = false;
         
     }
     /**
