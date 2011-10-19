@@ -340,7 +340,7 @@ public class ControlUnit {
      * If the stop instruction was executed previously, it reinitializes the simulator.
      */
     public void nextStep(){
-        if(!stop){ //Checks if the previous instruction was STOP
+        if(stop == false){ //Checks if the previous instruction was STOP
             registers.setIR(memory.getWord(registers.getPC())); //Gets the PC, uses it as an address to get the instruction Word from memory, and sets it as the next PC
             registers.incrementPC();
             executeInstruction();
@@ -358,9 +358,10 @@ public class ControlUnit {
         do
             nextStep();
         while(!stop);
+        if(stop){
         System.out.println("STOP instruction received, reinitializing simulator"); //TODO: Implement this message in a popup window
         initialize();
-        
+        }
     }
     /**
      * Initializes the simulator: Copies instructions to memory and initializes the PC to address 00h
