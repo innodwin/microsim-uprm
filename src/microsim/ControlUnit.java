@@ -29,7 +29,7 @@ public class ControlUnit {
     private static final int NEGATIVE = 2;
     private static final int OVERFLOW = 3; 
     //Constants for accessing the Register;
-    private static final String R7 = "110";
+    private static final String R7 = "111";
     private JDialog dialog = new JDialog();
     private MicrosimView mSimView;
 
@@ -46,6 +46,7 @@ public class ControlUnit {
         DataInputStream in = new DataInputStream(fstream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String strLine;
+        mSimView.updateGUI(registers, memory);
         int lineNumber = 0; //line counter for reporting what line number an improper isntruction was found
         dialog.setModal(true);
         if(instructions != null)
