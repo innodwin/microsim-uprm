@@ -29,9 +29,9 @@ public class ALU {
 	
         while (i < 8){
             if(accumulator.charAt(i) == '0' || register.charAt(i) == '0')
-                and.concat("0");
+                and = and.concat("0");
             else
-                and.concat("1");
+                and = and.concat("1");
 			
             i++;
 	}
@@ -68,9 +68,9 @@ public class ALU {
         
         while (i < 8){
             if(accumulator.charAt(i) == '1' || register.charAt(i) == '1')
-                or.concat("1");
+                or = or.concat("1");
             else
-                or.concat("0");
+                or = or.concat("0");
             
             i++;
 	}
@@ -205,11 +205,11 @@ public class ALU {
 	
         while (i < 8){
             if(accumulator.charAt(i) == '1' && register.charAt(i) == '1')
-                xor.concat("0");
+                xor = xor.concat("0");
             else if(accumulator.charAt(i) == '0' && register.charAt(i) == '0')
-		xor.concat("0");
+		xor = xor.concat("0");
             else
-		xor.concat("1");
+		xor = xor.concat("1");
 			
             i++;
 	}
@@ -242,15 +242,15 @@ public class ALU {
     {
         int i = 0;
 	String not = "";
-		
+
 	while(i < 8){
             if(accumulator.charAt(i) == '0')
-                not.concat("1");
+                not = not.concat("1");
             else
-                not.concat("0");
+                not = not.concat("0");
             i++;
 	}
-        
+
         ControlUnit.registers.setSR(CARRY, "0");
         ControlUnit.registers.setSR(OVERFLOW, "0");
         
