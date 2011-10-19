@@ -23,6 +23,8 @@ public class ControlUnit {
     private ArrayList<String> hexInstructions = new ArrayList<String>(64); //ArrayList to hold the original hexadecimal instructions
     private boolean stop = false; //Boolean for handling the STOP instruction and stopping execution.
     private IO io; //Used for handling keyboard input
+    private JDialog dialog = new JDialog();
+    private UserInputDialog userInput = new UserInputDialog();
     //Constants for accessing the SR flags
     private static final int ZERO = 0;
     private static final int CARRY = 1; 
@@ -30,7 +32,7 @@ public class ControlUnit {
     private static final int OVERFLOW = 3; 
     //Constants for accessing the Register;
     private static final String R7 = "110";
-    private JDialog dialog = new JDialog();
+   
 
 
     /**
