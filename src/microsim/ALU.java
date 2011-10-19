@@ -156,7 +156,7 @@ public class ALU {
         if(Integer.parseInt(sum, 2)==0 && ControlUnit.registers.getSR(CARRY).equals("1")){
             ControlUnit.registers.setSR(OVERFLOW, "1");
         }else{
-            ControlUnit.registers.setSR(OVERFLOW, "1");
+            ControlUnit.registers.setSR(OVERFLOW, "0");
         }
 //NEW        
         /*
@@ -449,8 +449,8 @@ public class ALU {
        int result = tmp1*tmp2;
        String mul = Tools.extendBinaryValue(8, Integer.toBinaryString(result));
        
-       ControlUnit.registers.setSR(OVERFLOW, "1");
-       ControlUnit.registers.setSR(CARRY, "1");
+       ControlUnit.registers.setSR(OVERFLOW, "0");
+       ControlUnit.registers.setSR(CARRY, "0");
        
        if(mul.charAt(0)=='1'){
            ControlUnit.registers.setSR(NEGATIVE, "1");
