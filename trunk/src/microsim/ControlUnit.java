@@ -366,9 +366,10 @@ public class ControlUnit {
         }      
         while(stopFlag == false);
         if(stopFlag){
+            initialize();
             popUp.setErrorMessage("STOP instruction received, reinitializing simulator");
             popUp.showErrorDialog();
-        System.out.println("STOP instruction received, reinitializing simulator"); //TODO: Implement this message in a popup window
+            System.out.println("STOP instruction received, reinitializing simulator"); //TODO: Implement this message in a popup window
         }
     }
     /**
