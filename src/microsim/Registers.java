@@ -221,6 +221,10 @@ public class Registers {
             return "";
         return String.valueOf(registers.get(SRINDEX).charAt(index));
     }
+    
+    public String getSR(){
+        return registers.get(SRINDEX);
+    }
   
     /**
      * Increments the value of the program counter by 2.
