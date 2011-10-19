@@ -5,7 +5,7 @@
 package microsim;
 
 /**
- *
+ * The ALU class represents the AR3's arithmetic logic unit. It is used for its methods which are called every time an ALU operation is needed.
  * @author damian
  */
 public class ALU {
