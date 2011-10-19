@@ -288,6 +288,8 @@ public class ControlUnit {
      */
     public void ldi(String immediate){
         registers.setAccumulator(immediate);
+        if(immediate.charAt(0) == '0')
+            registers.setSR(NEGATIVE, "1");
     }
     
     /**
