@@ -92,4 +92,13 @@ public class Memory {
         for(int i = 0; i < memory.size();i++)
         System.out.println(this.memory.get(i));
     }
+    
+    public String[] getMemory(){
+        String[] values = new String[256];
+        
+        for(int i = 0; i < 128;i++)
+            values[i] =Integer.toHexString(i*2)+": " + Tools.binToHex(memory.get(i*2)) + Tools.binToHex(memory.get(i*2+1));
+        
+        return values;
+    }
 }

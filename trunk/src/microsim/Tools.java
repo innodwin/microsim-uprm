@@ -98,6 +98,11 @@ public class Tools {
   public static String byteSizedBinValue(String binNum){
       return binNum.substring(binNum.length()-8, binNum.length());
   }
+  
+  public static String binToHex(String value){
+      int i= Integer.parseInt(value,2);
+      return Integer.toHexString(i);
+  }
 
 
     
