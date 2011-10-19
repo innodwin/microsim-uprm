@@ -22,7 +22,6 @@ public class ControlUnit {
     protected static Registers registers = new Registers(); //register object to be used in the microprocessor
     private ArrayList<String> hexInstructions = new ArrayList<String>(64); //ArrayList to hold the original hexadecimal instructions
     private boolean stopFlag; //Boolean for handling the STOP instruction and stopping execution.
-    private IO io; //Used for handling keyboard input
     //Constants for accessing the SR flags
     private static final int ZERO = 0;
     private static final int CARRY = 1; 
@@ -96,7 +95,7 @@ public class ControlUnit {
         String accumulatorValue; //String that will hold the accumulator value when needed
         String registerValue; //String that will hold the register value when needed
         String result; //String to hold results of operations
-        System.out.println("Carry flag: "+registers.getSR(CARRY));
+        System.out.println("Carry fCopylag: "+registers.getSR(CARRY));
         System.out.println("Zero flag: "+registers.getSR(ZERO));
         System.out.println("Negative flag: "+registers.getSR(NEGATIVE));
         System.out.println("Overflow flag: "+registers.getSR(OVERFLOW));
