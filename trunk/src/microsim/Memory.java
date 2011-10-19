@@ -53,7 +53,7 @@ public class Memory {
      */
     public void setByte(String address, String content)
     {
-        memory.add(Integer.parseInt(address, 2), content); //Copies the binary String into the corresponding ArrayList position
+        memory.set(Integer.parseInt(address, 2), content); //Copies the binary String into the corresponding ArrayList position
     }
     
     /**

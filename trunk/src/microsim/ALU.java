@@ -67,10 +67,10 @@ public class ALU {
         String or = "";
         
         while (i < 8){
-            if(accumulator.charAt(i) == '1' || register.charAt(i) == '1')
-                or = or.concat("1");
-            else
+            if(accumulator.charAt(i) == '0' && register.charAt(i) == '0')
                 or = or.concat("0");
+            else
+                or = or.concat("1");
             
             i++;
 	}
@@ -323,11 +323,11 @@ public class ALU {
         if(Integer.parseInt(accumulator, 2)==0){
             ControlUnit.registers.setSR(ZERO, "1");
         }else{
-            ControlUnit.registers.setSR(ZERO, "1");
+            ControlUnit.registers.setSR(ZERO, "0");
         }
 	
         if(accumulator.charAt(0)=='1'){
-            ControlUnit.registers.setSR(NEGATIVE, "0");
+            ControlUnit.registers.setSR(NEGATIVE, "1");
         }else{
             ControlUnit.registers.setSR(NEGATIVE, "0");
         }
