@@ -101,4 +101,14 @@ public class Memory {
         
         return values;
     }
+    
+    public String getKeyboardMemLocationContent(){
+        String vtr =""+ (char) Integer.parseInt(memory.get(250),2) + (char) Integer.parseInt(memory.get(251),2);
+        return vtr;
+    }
+    
+    public String getDisplayMemLocationContent(){
+        String vtr = ""+ (char) Integer.parseInt(memory.get(252),2) + (char) Integer.parseInt(memory.get(253),2) + (char) Integer.parseInt(memory.get(254),2) + (char) Integer.parseInt(memory.get(255),2);
+        return vtr;
+    }
 }

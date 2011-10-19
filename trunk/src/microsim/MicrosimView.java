@@ -552,6 +552,8 @@ public class MicrosimView extends FrameView {
         this.SRField.setText(r.getSR());
         this.AField.setText(r.getAccumulator());
         this.MemoryList.setListData(m.getMemory());
+        this.KeyboardField.setText(m.getKeyboardMemLocationContent());
+        this.DisplayField.setText(m.getDisplayMemLocationContent());
         this.getFrame().repaint();
     }
 }
