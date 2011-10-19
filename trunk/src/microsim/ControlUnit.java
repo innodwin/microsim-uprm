@@ -357,7 +357,7 @@ public class ControlUnit {
     public void run(){
         do
             nextStep();
-        while(!stop);
+        while(stop == false);
         if(stop){
         System.out.println("STOP instruction received, reinitializing simulator"); //TODO: Implement this message in a popup window
         initialize();
@@ -369,6 +369,7 @@ public class ControlUnit {
     private void initialize(){
         instructionsToMemory();
         registers.setPC("00000000");
+        stop = false;
         
     }
     /**
