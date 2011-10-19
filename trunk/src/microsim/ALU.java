@@ -243,7 +243,7 @@ public class ALU {
         int i = 0;
 	String not = "";
 		
-	while(i > 8){
+	while(i < 8){
             if(accumulator.charAt(i) == '0')
                 not.concat("1");
             else
