@@ -103,12 +103,8 @@ public class ALU {
      */
     public static String addc(String accumulator, String register)
     {
-        //int acc = Tools.signedBinToDec(accumulator);
-        //int reg = Tools.signedBinToDec(register);
-        //int result = 0;
         String sum = "";
-        //result = acc + reg;
-//NEW        
+      
         int i=7;
         
         while (i >= 0){
@@ -158,56 +154,7 @@ public class ALU {
         }else{
             ControlUnit.registers.setSR(OVERFLOW, "0");
         }
-//NEW        
-        /*
-        if(result==-255||result==255){
-            
-              if(ControlUnit.registers.getSR(CARRY).equals("1")){
-                        result++;
-                        ControlUnit.registers.setSR(OVERFLOW, "1");
-                        ControlUnit.registers.setSR(ZERO, "1");
-              }
-            
-              if(Integer.signum(result)==-1){
-                    ControlUnit.registers.setSR(NEGATIVE,"1");
-              }
-            
-              sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
-            
-        }else if(result==-256||result==256){
-            
-              ControlUnit.registers.setSR(OVERFLOW, "1");
 
-              if(ControlUnit.registers.getSR(CARRY).equals("1")){
-                        result++;
-              }else{
-                        ControlUnit.registers.setSR(CARRY,"1");
-                        ControlUnit.registers.setSR(ZERO, "1");
-              }
-            
-              if(Integer.signum(result)==-1){
-                    ControlUnit.registers.setSR(NEGATIVE,"1");
-              }
-
-              sum = Tools.byteSizedBinValue(Integer.toBinaryString(result));
-
-        }else{
-              
-              if(ControlUnit.registers.getSR(CARRY).equals("1")){
-                      result++;
-              }
-              
-              if(result==0){
-                      ControlUnit.registers.setSR(ZERO,"1");
-              }
-              
-              if(Integer.signum(result)==-1){
-                      ControlUnit.registers.setSR(NEGATIVE,"1");
-              }
-              
-              sum = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
-        }
-        */
         return sum;
     }
     
@@ -220,29 +167,25 @@ public class ALU {
      */
     public static String sub(String accumulator, String register)
     {
-        int acc = Tools.signedBinToDec(accumulator);
-        int reg = Tools.signedBinToDec(register);
-        int result=0;
-        String sub = "";
-        result = acc - reg;
-        if(result==-256){
-            
-            ControlUnit.registers.setSR(OVERFLOW, "1");
-            ControlUnit.registers.setSR(CARRY, "1");
-            ControlUnit.registers.setSR(ZERO, "1");
-            ControlUnit.registers.setSR(NEGATIVE, "1");
-            sub = Tools.byteSizedBinValue(Integer.toBinaryString(result));
-            
-        }else{
-            
-            if(Integer.signum(result)==-1){
-                  ControlUnit.registers.setSR(NEGATIVE, "1");
-            }else if(result==0){
-                  ControlUnit.registers.setSR(ZERO, "1");
-            }
-            
-            sub = Tools.extendBinaryValue(8,Integer.toBinaryString(result));
+        String regNeg = ALU.neg(register);
+        String sub = ALU.addc(accumulator, regNeg);
         
+        if(sub.charAt(0)=='1'){
+            ControlUnit.registers.setSR(NEGATIVE, "1");
+        }else{
+            ControlUnit.registers.setSR(NEGATIVE, "0");
+        }
+        
+        if(Integer.parseInt(sub, 2)==0){
+            ControlUnit.registers.setSR(ZERO,"1");
+        }else{
+            ControlUnit.registers.setSR(ZERO, "0");
+        }
+        
+        if(Integer.parseInt(sub, 2)==0 && ControlUnit.registers.getSR(CARRY).equals("1")){
+            ControlUnit.registers.setSR(OVERFLOW, "1");
+        }else{
+            ControlUnit.registers.setSR(OVERFLOW, "0");
         }
         
 	return sub;
@@ -335,37 +278,27 @@ public class ALU {
      */
     public static String neg(String accumulator)
     {
-        int i = 0;
-        String neg = "";
-		
-        while(i < 8){
-            if(accumulator.charAt(i) == '0')
-                neg+="1";
-            else
-                neg+="0";
-            i++;
+        String not = ALU.not(accumulator);
+        String one = "00000001";
+        ControlUnit.registers.setSR(CARRY, "0");
+        String neg = ALU.addc(not, one);
+        
+        if(Integer.parseInt(neg, 2)==0 && ControlUnit.registers.getSR(CARRY).equals("1")){
+            ControlUnit.registers.setSR(OVERFLOW, "1");
+        }else{
+            ControlUnit.registers.setSR(OVERFLOW, "0");
         }
         
-        int intNeg = Tools.signedBinToDec(neg);
-        
-        if(intNeg==255){
-            
-            intNeg++;
-            ControlUnit.registers.setSR(OVERFLOW, "1");
-            ControlUnit.registers.setSR(CARRY, "1");
+        if(Integer.parseInt(neg, 2)==0){
             ControlUnit.registers.setSR(ZERO, "1");
-            ControlUnit.registers.setSR(NEGATIVE, "1");
-            neg = Tools.byteSizedBinValue(Integer.toBinaryString(intNeg));
-            
         }else{
-            
-            intNeg++;
-            if(Integer.signum(intNeg)==-1){
-                  neg = Tools.byteSizedBinValue(Integer.toBinaryString(intNeg));
-                  ControlUnit.registers.setSR(NEGATIVE, "1");
-            }else
-                  neg = Tools.extendBinaryValue(8,Integer.toBinaryString(intNeg));
-                  
+            ControlUnit.registers.setSR(ZERO, "0");
+        }
+        
+        if(neg.charAt(0)=='1'){
+            ControlUnit.registers.setSR(NEGATIVE, "1");
+        }else{
+            ControlUnit.registers.setSR(NEGATIVE, "0");
         }
         
 	return neg;
