@@ -239,6 +239,16 @@ public class ControlUnit {
     public void ldaRegister(String register){
         String registerValue = registers.read(register);
         registers.setAccumulator(registerValue);
+        
+        if(registerValue.charAt(0) == '1')
+            registers.setSR(NEGATIVE, "1");
+        else
+            registers.setSR(NEGATIVE,"0");
+        
+        if(Integer.parseInt(registerValue, 2) == 0)
+            registers.setSR(ZERO, "1");
+        else
+            registers.setSR(ZERO,"0");             
     }
     
     /**
@@ -271,6 +281,16 @@ public class ControlUnit {
         //simply copy memory to accumulator
             String addressContent = memory.getByte(address); 
             registers.setAccumulator(addressContent);
+            
+            if(addressContent.charAt(0) == '1')
+                registers.setSR(NEGATIVE, "1");
+            else
+                registers.setSR(NEGATIVE,"0");
+        
+            if(Integer.parseInt(addressContent, 2) == 0)
+                registers.setSR(ZERO, "1");
+            else
+                registers.setSR(ZERO,"0");     
     }
     
     /**
@@ -288,8 +308,16 @@ public class ControlUnit {
      */
     public void ldi(String immediate){
         registers.setAccumulator(immediate);
-        if(immediate.charAt(0) == '0')
+        if(immediate.charAt(0) == '1')
             registers.setSR(NEGATIVE, "1");
+        else
+            registers.setSR(NEGATIVE,"0");
+        
+        if(Integer.parseInt(immediate, 2) == 0)
+            registers.setSR(ZERO, "1");
+        else
+            registers.setSR(ZERO,"0");        
+        
     }
     
     /**
