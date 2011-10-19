@@ -97,7 +97,7 @@ public class MicrosimView extends FrameView {
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
 
         mainPanel.setName("mainPanel"); // NOI18N
-        mainPanel.setPreferredSize(new java.awt.Dimension(350, 338));
+        mainPanel.setPreferredSize(new java.awt.Dimension(325, 338));
 
         IRField.setEditable(false);
         IRField.setMaximumSize(new java.awt.Dimension(16, 1));
@@ -433,7 +433,7 @@ public class MicrosimView extends FrameView {
             else{
             cu = null;
             try {
-                 cu = new ControlUnit(file);
+                 cu = new ControlUnit(file,this);
             } catch (Exception ex) {
                 mBox.setErrorMessage("Error Reading File. Select a new\n file and try again");
                 return;
