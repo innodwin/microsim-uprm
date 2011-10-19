@@ -54,10 +54,16 @@ public class ControlUnit {
             
         while ((strLine = br.readLine()) != null)   { //reads from file until finding and empty line
             lineNumber++; //increments line counter
-            if(strLine.length() != 4) //Verifies that the instruction is of proper length (4)
-                System.out.println("Invalid instruction at line: " +lineNumber); //If an instruction is improper, it lets the user know via the console    
+            if(strLine.length() != 4) //Verifies that the instruction is of proper length (4)               
+            {
+                popUp.setErrorMessage("Invalid instruction at line: " +lineNumber + ". Instruction omitted."); //Popup error window
+                popUp.showErrorDialog();    
+            }  
             else if(hexInstructions.size() >= 64) //Verifies if the code segment in memory is full
-                System.out.println("64 instructions in memory. Code segment full"); //Lets the user know of the full code segment via the console
+            {
+                popUp.setErrorMessage("64 instructions in memory. Code segment full. Instructions after 64 omitted."); //Popup error window
+                popUp.showErrorDialog();  
+            } 
             else
                 hexInstructions.add(strLine); //Finally, adds an instruction into the ArrayList
         }
@@ -398,8 +404,7 @@ public class ControlUnit {
         if(stopFlag){
             initialize();
             popUp.setErrorMessage("STOP instruction received, reinitializing simulator");
-            popUp.showErrorDialog();
-            System.out.println("STOP instruction received, reinitializing simulator"); //TODO: Implement this message in a popup window
+            popUp.showErrorDialog();         
         }
     }
     /**
@@ -410,21 +415,6 @@ public class ControlUnit {
         registers.setPC("00000000");
         stopFlag = false;
         
-    }
-    /**
-     * Implemented so the GUI will have access to the Registers for display purposes.
-     * @return The Registers object used in the Control Unit
-     */
-    public Registers getRegisters(){
-        return this.registers;
-    }
-    
-    /**
-     * Implemented so the GUI will have access to the Memory for display purposes.
-     * @return The Memory object used in the Control Unit
-     */
-    public Memory getMemory(){
-        return this.memory;
     }
     
 }
