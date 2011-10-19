@@ -222,6 +222,10 @@ public class Registers {
         return String.valueOf(registers.get(SRINDEX).charAt(index));
     }
     
+    /**
+     * Returns the Status Register
+     * @return The entire Status Register String
+     */
     public String getSR(){
         return registers.get(SRINDEX);
     }

@@ -18,7 +18,13 @@ import javax.swing.JOptionPane;
  */
 public class ControlUnit {
 
+    /**
+     * This Memory object holds the memory for the microprocessor
+     */
     protected static Memory memory = new Memory(); //memory object to be used in the microprocessor
+    /**
+     * This Registers object holds the Registers for the microprocessor
+     */
     protected static Registers registers = new Registers(); //register object to be used in the microprocessor
     private ArrayList<String> hexInstructions = new ArrayList<String>(64); //ArrayList to hold the original hexadecimal instructions
     private boolean stopFlag; //Boolean for handling the STOP instruction and stopping execution.
@@ -36,6 +42,7 @@ public class ControlUnit {
     /**
      * Constructor creates the Control Unit, parses the instructions from input file into memory, and initializes the microprocessor.
      * @param instructions The text file with the instructions to be loaded into memory for execution
+     * @param view The GUI container. Allows updating of the GUI when instructions are executed.
      * @throws FileNotFoundException Exception thrown when the user points the simulator to a nonexistent file
      * @throws IOException IO Exception when reading file
      */
