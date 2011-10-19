@@ -21,7 +21,7 @@ public class ControlUnit {
     protected static Memory memory = new Memory(); //memory object to be used in the microprocessor
     protected static Registers registers = new Registers(); //register object to be used in the microprocessor
     private ArrayList<String> hexInstructions = new ArrayList<String>(64); //ArrayList to hold the original hexadecimal instructions
-    private boolean stopFlag = false; //Boolean for handling the STOP instruction and stopping execution.
+    private boolean stopFlag; //Boolean for handling the STOP instruction and stopping execution.
     private IO io; //Used for handling keyboard input
     //Constants for accessing the SR flags
     private static final int ZERO = 0;
@@ -219,7 +219,8 @@ public class ControlUnit {
             case 31: //STOP
                 System.out.println("Executing STOP");
                 System.out.println("Accumulator: "+registers.getAccumulator());
-                stop();
+                
+                stopOperaton();
                 break;
             case 24: //NOP
                 System.out.println("Executing NOP");
@@ -330,7 +331,7 @@ public class ControlUnit {
     /**
      * Native Instruction: STOP - Stops execution
      */
-    public void stop(){
+    public void stopOperaton(){
         stopFlag = true;
         System.out.println("asdf tried to step stop to true");
         
