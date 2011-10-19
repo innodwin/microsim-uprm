@@ -351,7 +351,7 @@ public class ControlUnit {
         }
         else{
             initialize();
-            System.out.println("Stop instruction received, reinitializing simulator"); //TODO:Implement this message in a popup window
+            System.out.println("STOP instruction received, reinitializing simulator"); //TODO:Implement this message in a popup window
         }
     }
     
