@@ -1,6 +1,5 @@
 package microsim;
 
-import java.awt.Dialog.ModalExclusionType;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -22,24 +21,15 @@ public class ControlUnit {
     protected static Memory memory = new Memory(); //memory object to be used in the microprocessor
     protected static Registers registers = new Registers(); //register object to be used in the microprocessor
     private ArrayList<String> hexInstructions = new ArrayList<String>(64); //ArrayList to hold the original hexadecimal instructions
-    private File instructionFile; //File object that will hold the text file with instructions
     private boolean stop = false; //Boolean for handling the STOP instruction and stopping execution.
     private IO io; //Used for handling keyboard input
-    private UserInputDialog userInput = new UserInputDialog();
     //Constants for accessing the SR flags
     private static final int ZERO = 0;
     private static final int CARRY = 1; 
     private static final int NEGATIVE = 2;
     private static final int OVERFLOW = 3; 
-    //Constants for accessing the Registers
-    private static final String R1 = "000";
-    private static final String R2 = "001";
-    private static final String R3 = "010";
-    private static final String R4 = "011";
-    private static final String R5 = "100";
-    private static final String R6 = "101";
+    //Constants for accessing the Register;
     private static final String R7 = "110";
-    private static final String R8 = "111";
     private JDialog dialog = new JDialog();
 
 
@@ -263,7 +253,10 @@ public class ControlUnit {
     public void ldaAddress(String address){
         int intAddress = Integer.parseInt(address, 2); //parses address to integer
         if(intAddress == 250 || intAddress == 251) {//if the address is 250 or 251, they are keyboard inputs to be requested
+            
             String var = JOptionPane.showInputDialog("enter a value");
+            while (var == null)
+                var = JOptionPane.showInputDialog("enter a value");
             char input = var.charAt(0);
             int temp = (int) input;
             String tmp1 = Integer.toBinaryString(temp);

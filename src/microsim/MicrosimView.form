@@ -6,7 +6,7 @@
       <Properties>
         <Property name="name" type="java.lang.String" value="mainPanel" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[300, 338]"/>
+          <Dimension value="[350, 338]"/>
         </Property>
       </Properties>
 
@@ -18,11 +18,14 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="IRLabel" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="IRLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="IRField" min="-2" pref="121" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="PCLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="PCField" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
-                                  <Component id="IRField" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="ALabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -70,6 +73,7 @@
                                   <Component id="R7Field" min="-2" pref="59" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -86,7 +90,7 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="110" max="-2" attributes="1"/>
+                              <Component id="jScrollPane1" min="-2" pref="66" max="-2" attributes="1"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="DisplayField" alignment="0" max="32767" attributes="1"/>
                                   <Component id="KeyboardField" alignment="0" max="32767" attributes="1"/>
@@ -101,7 +105,7 @@
                           <Component id="runButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="346" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="398" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -111,7 +115,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="IRLabel" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="IRLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="IRField" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="PCLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -119,7 +126,6 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="IRField" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
                               <Component id="SRLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="SRField" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
                           </Group>
@@ -138,7 +144,7 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="MemoryLabel" min="-2" max="-2" attributes="0"/>
@@ -185,9 +191,9 @@
                               <Component id="R7Field" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jScrollPane1" max="32767" attributes="1"/>
+                      <Component id="jScrollPane1" pref="184" max="32767" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="67" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="stepButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="runButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -625,6 +631,6 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,103,0,0,1,41"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,103,0,0,2,-51"/>
   </AuxValues>
 </Form>
