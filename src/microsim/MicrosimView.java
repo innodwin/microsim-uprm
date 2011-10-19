@@ -334,7 +334,7 @@ public class MicrosimView extends FrameView {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                                 .addComponent(MemoryLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(KeyboardLabel)
@@ -342,15 +342,15 @@ public class MicrosimView extends FrameView {
                                     .addComponent(DisplayLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DisplayField, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                                    .addComponent(SRField, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                                    .addComponent(KeyboardField, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))))
-                        .addGap(20, 20, 20))
+                                    .addComponent(DisplayField, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                    .addComponent(SRField, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                    .addComponent(KeyboardField, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))))
+                        .addGap(66, 66, 66))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(stepButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(runButton)
-                        .addContainerGap(155, Short.MAX_VALUE))))
+                        .addContainerGap(201, Short.MAX_VALUE))))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,6 +551,7 @@ public class MicrosimView extends FrameView {
         this.PCField.setText(r.getPC());
         this.SRField.setText(r.getSR());
         this.AField.setText(r.getAccumulator());
+        this.MemoryList.setListData(m.getMemory());
         this.getFrame().repaint();
     }
 }
