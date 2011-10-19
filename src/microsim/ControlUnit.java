@@ -348,12 +348,10 @@ public class ControlUnit {
             registers.setIR(memory.getWord(registers.getPC())); //Gets the PC, uses it as an address to get the instruction Word from memory, and sets it as the next PC
             registers.incrementPC();
             executeInstruction();
-            if(stopFlag==true)
-                System.out.println("inside next step, stop is true and this is printing.");
         }
         else{
             initialize();
-            System.out.println("Simulator has been reinitialized"); //TODO:Implement this message in a popup window
+            System.out.println("Stop instruction received, reinitializing simulator"); //TODO:Implement this message in a popup window
         }
     }
     
