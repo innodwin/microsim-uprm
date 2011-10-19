@@ -360,7 +360,6 @@ public class ControlUnit {
         while(stop == false);
         if(stop){
         System.out.println("STOP instruction received, reinitializing simulator"); //TODO: Implement this message in a popup window
-        initialize();
         }
     }
     /**
