@@ -11,9 +11,9 @@ package microsim;
 public class Tools {
     private final int ERROR = -1300;
     /**
-     * Tests if a String value if in binary form.
-     * @param input
-     * @return True if the value is value is binary, else false.
+     * Tests if a String value is in binary form
+     * @param input the binary string
+     * @return true if the value is in binary form, else false
      */
     public boolean isBinary(String input) {
  
@@ -32,10 +32,10 @@ public class Tools {
 }
   
   /**
-   * put the leading zeros to a value to match the size especified.
-   * @param size
-   * @param value
-   * @return the String with the correct size of bits.
+   * Puts the leading zeros to a value to match the size specified
+   * @param size the desired bit extension
+   * @param value the value to extend
+   * @return the String with the desired size of bits
    */
   public static String extendBinaryValue(int size,String value){
       int wordSize = value.length();
@@ -54,10 +54,9 @@ public class Tools {
   }
   
   /**
-   * Change a binary value to a decimal representation.
-   * @param value
-   * @return an integer that contains the decimal representation of the value
-   * provided.
+   * Change a binary value to a decimal representation
+   * @param value the binary string to convert
+   * @return an integer that contains the decimal representation of the value provided
    */
   public int binToDec(String value)
   {
@@ -72,9 +71,9 @@ public class Tools {
   }
   
   /**
-   * 
-   * @param binNum
-   * @return
+   * Converts a signed binary string to an integer
+   * @param binNum the binary string to convert
+   * @return the signed binary string conversion to integer
    */
   public static int signedBinToDec(String binNum){
       
@@ -91,14 +90,19 @@ public class Tools {
   }
   
   /**
-   * 
-   * @param binNum
-   * @return
+   * Shortens a binary string to a byte
+   * @param binNum the binary string to reduce
+   * @return the binary string reduced to a byte
    */
   public static String byteSizedBinValue(String binNum){
       return binNum.substring(binNum.length()-8, binNum.length());
   }
   
+  /**
+   * Converts a binary string to a hexadecimal value
+   * @param value the binary string to convert
+   * @return the hexadecimal representation of the binary string
+   */
   public static String binToHex(String value){
       int i= Integer.parseInt(value,2);
       return Integer.toHexString(i);

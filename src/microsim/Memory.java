@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * The Memory object represents the 256-byte memory bank in the microprocessor.
+ * The Memory object represents the 256-byte memory bank in the microprocessor
  * Bytes 0-127 are reserved for the code segment.
  * Bytes 128-255 are for general use.
  * Words represent two contiguous bytes.
- * The LSB is on the lower, even address and the MSB is on the higher (odd) address.
+ * The LSB is on the lower, even address and the MSB is on the higher (odd) address
  * @author Damian Esteves
  */
 public class Memory {
@@ -16,7 +16,7 @@ public class Memory {
     private ArrayList <String> memory;  //ArrayList that will hold the 256 bytes of memory
     
     /**
-     * The constructor initializes the memory ArrayList and fills it with randomly generated trash.
+     * The constructor initializes the memory ArrayList and fills it with randomly generated trash
      */
     public Memory()
     {
@@ -36,7 +36,7 @@ public class Memory {
     }
     
     /**
-     * Retrieves the 8-bit binary String representing a single byte at a given memory address.
+     * Retrieves the 8-bit binary String representing a single byte at a given memory address
      * @param address The address of the desired byte in binary String format
      * @return The 8-bit binary String
      */
@@ -47,7 +47,7 @@ public class Memory {
     }
     
     /**
-     * Copies a binary String representing a single byte to a specified address.
+     * Copies a binary String representing a single byte to a specified address
      * @param address The address where the byte will be copied to
      * @param content The 8-bit binary String to be set
      */
@@ -93,6 +93,10 @@ public class Memory {
         System.out.println(this.memory.get(i));
     }
     
+    /**
+     * Used to print the memory with it's indexes in the GUI
+     * @return a string array with the memory values
+     */
     public String[] getMemory(){
         String[] values = new String[256];
         
@@ -102,11 +106,19 @@ public class Memory {
         return values;
     }
     
+    /**
+     * Used to convert the keyboard's ASCII code to it's String representation to print it on the GUI
+     * @return the String representation of the keyboard value
+     */
     public String getKeyboardMemLocationContent(){
         String vtr =""+ (char) Integer.parseInt(memory.get(250),2) + (char) Integer.parseInt(memory.get(251),2);
         return vtr;
     }
     
+    /**
+     * Used to convert the display's ASCII code to it's String representation to print it on the GUI
+     * @return the String representation of the display value
+     */
     public String getDisplayMemLocationContent(){
         String vtr = ""+ (char) Integer.parseInt(memory.get(252),2) + (char) Integer.parseInt(memory.get(253),2) + (char) Integer.parseInt(memory.get(254),2) + (char) Integer.parseInt(memory.get(255),2);
         return vtr;
