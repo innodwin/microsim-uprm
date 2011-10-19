@@ -14,95 +14,97 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="IRLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="IRField" min="-2" pref="121" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="PCLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="PCField" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="ALabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                      <Component id="AField" min="-2" pref="59" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="R7Label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="R7Field" pref="115" max="32767" attributes="0"/>
+                                  <Component id="R7Field" pref="107" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="R6Label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="R6Field" pref="115" max="32767" attributes="0"/>
+                                  <Component id="R6Field" pref="107" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="R5Label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="R5Field" pref="115" max="32767" attributes="0"/>
+                                  <Component id="R5Field" pref="107" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="R4Label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="R4Field" pref="115" max="32767" attributes="0"/>
+                                  <Component id="R4Field" pref="107" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="R3Label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="R3Field" pref="115" max="32767" attributes="0"/>
+                                  <Component id="R3Field" pref="107" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="R2Label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="R2Field" pref="115" max="32767" attributes="0"/>
+                                  <Component id="R2Field" pref="107" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="R1Label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="R1Field" pref="115" max="32767" attributes="0"/>
+                                  <Component id="R1Field" pref="107" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="R0Label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="R0Field" pref="115" max="32767" attributes="0"/>
+                                  <Component id="R0Field" pref="107" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="PCLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="PCField" pref="105" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="ALabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="AField" pref="108" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="DisplayLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="MemoryLabel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="SRLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="KeyboardLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="66" max="-2" attributes="1"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="DisplayField" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="KeyboardField" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="SRField" alignment="0" pref="58" max="32767" attributes="1"/>
-                              </Group>
-                          </Group>
+                          <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                          <Component id="stepButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="runButton" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="IRLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="IRField" pref="156" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="398" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="DisplayLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="MemoryLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="KeyboardLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="43" pref="43" max="43" attributes="0"/>
+                          <Component id="SRLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="DisplayField" pref="70" max="32767" attributes="1"/>
+                      <Component id="SRField" pref="70" max="32767" attributes="1"/>
+                      <Component id="KeyboardField" pref="70" max="32767" attributes="1"/>
+                      <Component id="jScrollPane1" min="-2" pref="66" max="-2" attributes="1"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="354" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                  <Component id="stepButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="runButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="408" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -111,51 +113,33 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="IRLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="IRField" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="PCLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ALabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="SRLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SRField" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="PCField" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="KeyboardLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="KeyboardField" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="AField" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="DisplayLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="DisplayField" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="MemoryLabel" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="R0Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="R0Field" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="IRLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="R1Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="R1Field" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
+                                      <Component id="PCLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="PCField" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="ALabel" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="IRField" min="-2" pref="16" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="AField" min="-2" pref="16" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="R0Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="R0Field" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="R1Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="R1Field" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -188,14 +172,37 @@
                               <Component id="R7Field" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jScrollPane1" pref="185" max="32767" attributes="1"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="SRLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SRField" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="KeyboardField" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="KeyboardLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="DisplayLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DisplayField" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="MemoryLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="145" pref="145" max="145" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane1" pref="185" max="32767" attributes="1"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="stepButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="runButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -220,6 +227,7 @@
         <Component class="javax.swing.JTextField" name="PCField">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[8, 1]"/>
             </Property>
@@ -235,6 +243,7 @@
         <Component class="javax.swing.JTextField" name="AField">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[8, 1]"/>
             </Property>
@@ -258,7 +267,7 @@
             </Property>
             <Property name="name" type="java.lang.String" value="SRField" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[4, 1]"/>
+              <Dimension value="[8, 1]"/>
             </Property>
           </Properties>
         </Component>

@@ -37,6 +37,7 @@ public class MicrosimView extends FrameView {
     private static final String R6 = "110";
     private static final String R7 = "111";
     public MessageBox mBox = new MessageBox();
+    
     public MicrosimView(SingleFrameApplication app) {
         super(app);
 
@@ -115,12 +116,14 @@ public class MicrosimView extends FrameView {
         IRField.setPreferredSize(new java.awt.Dimension(16, 1));
 
         PCField.setEditable(false);
+        PCField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         PCField.setMaximumSize(new java.awt.Dimension(8, 1));
         PCField.setMinimumSize(new java.awt.Dimension(8, 1));
         PCField.setName("PCField"); // NOI18N
         PCField.setPreferredSize(new java.awt.Dimension(8, 1));
 
         AField.setEditable(false);
+        AField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         AField.setMaximumSize(new java.awt.Dimension(8, 1));
         AField.setMinimumSize(new java.awt.Dimension(8, 1));
         AField.setName("AField"); // NOI18N
@@ -130,7 +133,7 @@ public class MicrosimView extends FrameView {
         SRField.setMaximumSize(new java.awt.Dimension(4, 1));
         SRField.setMinimumSize(new java.awt.Dimension(4, 1));
         SRField.setName("SRField"); // NOI18N
-        SRField.setPreferredSize(new java.awt.Dimension(4, 1));
+        SRField.setPreferredSize(new java.awt.Dimension(8, 1));
 
         R0Field.setEditable(false);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(microsim.MicrosimApp.class).getContext().getResourceMap(MicrosimView.class);
@@ -273,75 +276,78 @@ public class MicrosimView extends FrameView {
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(IRLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(IRField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(PCLabel)
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(PCField, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(mainPanelLayout.createSequentialGroup()
-                                    .addComponent(ALabel)
-                                    .addGap(16, 16, 16)
-                                    .addComponent(AField, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(R7Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(R7Field, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                                .addComponent(R7Field, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(R6Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(R6Field, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                                .addComponent(R6Field, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(R5Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(R5Field, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                                .addComponent(R5Field, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(R4Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(R4Field, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                                .addComponent(R4Field, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(R3Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(R3Field, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                                .addComponent(R3Field, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(R2Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(R2Field, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                                .addComponent(R2Field, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(R1Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(R1Field, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                                .addComponent(R1Field, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(R0Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(R0Field, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(R0Field, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(DisplayLabel)
-                                    .addComponent(MemoryLabel)
-                                    .addComponent(SRLabel)))
-                            .addComponent(KeyboardLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(DisplayField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(KeyboardField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SRField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))))
+                                .addComponent(PCLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(PCField, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(ALabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(AField, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)))
+                        .addGap(76, 76, 76))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(stepButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(runButton)))
-                .addGap(398, 398, 398))
+                        .addComponent(IRLabel)
+                        .addGap(14, 14, 14)
+                        .addComponent(IRField, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(DisplayLabel)
+                        .addComponent(MemoryLabel)
+                        .addComponent(KeyboardLabel))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(SRLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DisplayField, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                    .addComponent(SRField, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                    .addComponent(KeyboardField, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(354, 354, 354))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addComponent(stepButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(runButton)
+                .addContainerGap(408, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,40 +355,27 @@ public class MicrosimView extends FrameView {
                 .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(IRLabel)
-                            .addComponent(IRField, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PCLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ALabel))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SRLabel)
-                            .addComponent(SRField, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PCField, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(KeyboardLabel)
-                            .addComponent(KeyboardField, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AField, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DisplayLabel)
-                            .addComponent(DisplayField, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(MemoryLabel)
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(R0Label)
-                                    .addComponent(R0Field, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(IRLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(R1Label)
-                                    .addComponent(R1Field, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(PCLabel)
+                                    .addComponent(PCField, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ALabel))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(IRField, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(AField, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(R0Label)
+                            .addComponent(R0Field, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(R1Label)
+                            .addComponent(R1Field, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(R2Label)
@@ -407,12 +400,29 @@ public class MicrosimView extends FrameView {
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(R7Label)
                             .addComponent(R7Field, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SRLabel)
+                            .addComponent(SRField, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(KeyboardField, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(KeyboardLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DisplayLabel)
+                            .addComponent(DisplayField, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(MemoryLabel)
+                                .addGap(145, 145, 145))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stepButton)
                     .addComponent(runButton))
-                .addContainerGap())
+                .addGap(17, 17, 17))
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -538,6 +548,10 @@ public class MicrosimView extends FrameView {
         this.R5Field.setText(r.read(R5));
         this.R6Field.setText(r.read(R6));
         this.R7Field.setText(r.read(R7));
+        this.IRField.setText(r.getIR());
+        this.PCField.setText(r.getPC());
+        this.SRField.setText(r.getSR());
+        this.AField.setText(r.getAccumulator());
         this.getFrame().repaint();
     }
 }
