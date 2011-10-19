@@ -86,7 +86,7 @@ public class ControlUnit {
     }
     
     /**
-     * Executes the instruction currently in the Instruction Register
+     * Goes through the Fetch-Decode-Execute process of executing an instruction
      */
     public void executeInstruction(){
         String InstructionRegister = registers.getIR(); //Grabs the instruction from the IR
